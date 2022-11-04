@@ -14,7 +14,6 @@ import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 import com.locagyn.extras.Endereco;
 import com.locagyn.extras.Telefone;
-import com.locagyn.visao.CellRenderer;
 import com.locagyn.visao.TelaDasMarcas;
 
 /**
@@ -474,87 +473,87 @@ public class TelaCliente extends javax.swing.JFrame {
 
  private void imprimirDadosNaGrid(ArrayList<Cliente> listaDeClientes) {
         try {
-            DefaultTableModel model = (DefaultTableModel) jTableClientes.getModel();
-            CellRenderer cellRenderer = new CellRenderer();
-
-            //Limpa a tabela 
-            model.setNumRows(0);
-            Iterator<Cliente> lista = listaDeClientes.iterator();
-
-            while (lista.hasNext()) {
-                String[] saida = new String[10];
-                Cliente aux = lista.next();
-                saida[0] = aux.getId() + "";
-                saida[1] = aux.getCpfCnpj();
-                saida[2] = aux.getNome();
-                saida[3] = aux.getRazaoSocial();
-                saida[4] = aux.getIdentidade();
-                saida[4] = aux.getTelefone();
-                saida[4] = aux.getEmail();
-                saida[4] = aux.getEndereco;
-                saida[4] = aux.getIden();
-                saida[4] = aux.getIdentidade();
-                
+//            DefaultTableModel model = (DefaultTableModel) jTableClientes.getModel();
+//            CellRenderer cellRenderer = new CellRenderer();
+//
+//            Limpa a tabela 
+//            model.setNumRows(0);
+//            Iterator<Cliente> lista = listaDeClientes.iterator();
+//
+//            while (lista.hasNext()) {
+//                String[] saida = new String[10];
+//                Cliente aux = lista.next();
+//                saida[0] = aux.getId() + "";
+//                saida[1] = aux.getCpfCnpj();
+//                saida[2] = aux.getNome();
+//                saida[3] = aux.getRazaoSocial();
+//                saida[4] = aux.getIdentidade();
+//                saida[4] = aux.getTelefone();
+//                saida[4] = aux.getEmail();
+//                saida[4] = aux.getEndereco;
+//                saida[4] = aux.getIden();
+//                saida[4] = aux.getIdentidade();
+//                
                 //saida[4] = url da marca a partir do método buscar(Id)
-                jTableModelo.getColumnModel().getColumn(3).setCellRenderer(cellRenderer);
-                jTableModelo.getColumnModel().getColumn(4).setCellRenderer(cellRenderer);
+//                jTableModelo.getColumnModel().getColumn(3).setCellRenderer(cellRenderer);
+//                jTableModelo.getColumnModel().getColumn(4).setCellRenderer(cellRenderer);
                 //Incluir nova linha na Tabela
                 //Object[] dados = {saida[0], saida[1], saida[2], saida[3], imagemCarro};
-                model.addRow(saida);
-            }
+//                model.addRow(saida);
+//            }
         }catch(Exception erro){
             
         }}
     
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         // TODO add your handling code here:
-        JFileChooser fc = new JFileChooser(".\\src\\com\\locagyn\\logomarcas");
-        fc.setDialogTitle("Buscar Imagem");
-        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem","jpg", "png","jpeg");
-
-        fc.setFileFilter(filter);
-        int retorno = fc.showOpenDialog(this);
-
-        if(retorno == JFileChooser.APPROVE_OPTION){
-            File selectedImageFile = fc.getSelectedFile();
-            urlArquivo = selectedImageFile.getPath();
-            jTextFieldURL.setText(urlArquivo);
-
-            ImageIcon iconLogo = new ImageIcon(urlArquivo);
-            iconLogo.setImage(iconLogo.getImage().getScaledInstance(jLabelCnh.getWidth(),jLabelCnh.getHeight(),1));
-            jLabelCnh.setIcon(iconLogo);
-        }
+//        JFileChooser fc = new JFileChooser(".\\src\\com\\locagyn\\logomarcas");
+//        fc.setDialogTitle("Buscar Imagem");
+//        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+//
+//        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem","jpg", "png","jpeg");
+//
+//        fc.setFileFilter(filter);
+//        int retorno = fc.showOpenDialog(this);
+//
+//        if(retorno == JFileChooser.APPROVE_OPTION){
+//            File selectedImageFile = fc.getSelectedFile();
+//            urlArquivo = selectedImageFile.getPath();
+//            jTextFieldURL.setText(urlArquivo);
+//
+//            ImageIcon iconLogo = new ImageIcon(urlArquivo);
+//            iconLogo.setImage(iconLogo.getImage().getScaledInstance(jLabelCnh.getWidth(),jLabelCnh.getHeight(),1));
+//            jLabelCnh.setIcon(iconLogo);
+//        }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
 
-        try {
-            Marca n = new Marca(Integer.parseInt(jTextFieldID.getText()),
-                jTextFieldDescricao.getText(), jTextFieldURL.getText());
-
-            marcaControle.alterar(n);
-            imprimirDadosNaGrid(marcaControle.listagem());
-        } catch (Exception ex) {
-            Logger.getLogger(TelaDasMarcas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            Marca n = new Marca(Integer.parseInt(jTextFieldID.getText()),
+//                jTextFieldDescricao.getText(), jTextFieldURL.getText());
+//
+//            marcaControle.alterar(n);
+//            imprimirDadosNaGrid(marcaControle.listagem());
+//        } catch (Exception ex) {
+//            Logger.getLogger(TelaDasMarcas.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         // TODO add your handling code here:
-        try {
-
-            Marca objeto = new Marca(0,jTextFieldDescricao.getText().toUpperCase(),jTextFieldURL.getText());
-
-            marcaControle.incluir(objeto);
-            jTextFieldDescricao.setText("");
-            imprimirDadosNaGrid(marcaControle.listagem());
-
-        }
-        catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, erro.getMessage());
-        }
+//        try {
+//
+//            Marca objeto = new Marca(0,jTextFieldDescricao.getText().toUpperCase(),jTextFieldURL.getText());
+//
+//            marcaControle.incluir(objeto);
+//            jTextFieldDescricao.setText("");
+//            imprimirDadosNaGrid(marcaControle.listagem());
+//
+//        }
+//        catch (Exception erro) {
+//            JOptionPane.showMessageDialog(this, erro.getMessage());
+//        }
 
     }//GEN-LAST:event_jButtonIncluirActionPerformed
 
