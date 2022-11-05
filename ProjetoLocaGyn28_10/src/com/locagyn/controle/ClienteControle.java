@@ -8,8 +8,6 @@ import com.locagyn.modelos.Cliente;
 import com.locagyn.persistencia.IClienteDao;
 import com.locagyn.persistencia.ClienteDao;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 
 /**

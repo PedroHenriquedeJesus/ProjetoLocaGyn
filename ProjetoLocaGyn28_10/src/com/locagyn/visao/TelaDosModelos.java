@@ -4,21 +4,20 @@
  */
 package com.locagyn.visao;
 
+import com.locagyn.controle.IMarcaControle;
 import com.locagyn.controle.IModeloControle;
+import com.locagyn.controle.MarcaControle;
 import com.locagyn.controle.ModeloControle;
 import com.locagyn.modelos.Marca;
 import com.locagyn.modelos.Modelo;
-import com.locagyn.persistencia.IMarcaDao;
-import com.locagyn.persistencia.MarcaDao;
+//import com.locagyn.persistencia.IMarcaDao;
+//import com.locagyn.persistencia.MarcaDao;
 import java.awt.Component;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -36,6 +35,7 @@ import javax.swing.table.DefaultTableModel;
 public class TelaDosModelos extends javax.swing.JFrame {
 
     IModeloControle modeloControle = new ModeloControle();
+    IMarcaControle marcaControle = new MarcaControle();
     String urlArquivo = "";
 
     /**
@@ -43,6 +43,19 @@ public class TelaDosModelos extends javax.swing.JFrame {
      */
     public TelaDosModelos() {
         initComponents();
+        try {
+            ArrayList <Marca> combolista = marcaControle.listagem();
+            int lim = combolista.size();
+            String marcas[] = new String[lim];
+
+            for(int i = 0; i < combolista.size(); i++){
+                marcas[i] = combolista.get(i).getDescricao();
+                jComboBoxMarca.addItem(marcas[i]);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
         preencherBoxMarcas();
         setExtendedState(MAXIMIZED_BOTH);
         jTextFieldID.setEnabled(false);
@@ -60,8 +73,8 @@ public class TelaDosModelos extends javax.swing.JFrame {
 
     public void preencherBoxMarcas() {
         try {
-
-            IMarcaDao objetoDao = new MarcaDao();
+           
+            IMarcaControle objetoDao = marcaControle;
             ArrayList<Marca> lista = objetoDao.listagem();
             int tamanho = lista.size();
             String[] relacaoMarcas = new String[tamanho];
@@ -90,7 +103,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
                 String[] saida = new String[5];
                 Modelo aux = lista.next();
                 Marca marca = new Marca();
-                IMarcaDao marcaDao = new MarcaDao();
+                IMarcaControle marcaDao = marcaControle;
                 ImageIcon imagemCarro = new ImageIcon(aux.getUrl());
                 ImageIcon imagemLogo = new ImageIcon(aux.getObjetoMarca().getUrl());
                 System.out.println(aux.getObjetoMarca().getUrl() + 1);
@@ -192,7 +205,15 @@ public class TelaDosModelos extends javax.swing.JFrame {
             new String [] {
                 "IDENTIFICADOR", "DESCRIÇÃO", "URL", "MODELO", "MARCA"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTableModelo.setToolTipText("");
         jTableModelo.setFocusable(false);
         jTableModelo.setGridColor(new java.awt.Color(255, 255, 255));
@@ -238,9 +259,11 @@ public class TelaDosModelos extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButtonIncluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jButtonBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButtonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+            .addComponent(jButtonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jButtonIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,6 +275,12 @@ public class TelaDosModelos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAlterar))
         );
+
+        jComboBoxMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMarcaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -277,20 +306,12 @@ public class TelaDosModelos extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabelImagemModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabelImagemMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(210, 210, 210))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(96, 96, 96))))))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelImagemModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelImagemMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(80, 80, 80))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,7 +325,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
                         .addComponent(jLabelImagemMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 28, Short.MAX_VALUE))
+                        .addGap(0, 41, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,11 +333,12 @@ public class TelaDosModelos extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(17, 17, 17)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextFieldURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxMarca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(jTextFieldURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -334,40 +356,36 @@ public class TelaDosModelos extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(207, 207, 207)
-                .addComponent(jButtonVoltar)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1021, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonVoltar)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(9, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonVoltar)
-                    .addComponent(jLabel1))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButtonVoltar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -391,9 +409,8 @@ public class TelaDosModelos extends javax.swing.JFrame {
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         // TODO add your handling code here:
         try {
-            Marca marca = new Marca();
-            IMarcaDao marcaDao = new MarcaDao();
-            Modelo objeto = new Modelo(0, jTextFieldDescricao.getText().toUpperCase(), jTextFieldURL.getText(),marcaDao.buscar(jComboBoxMarca.getSelectedItem().toString()) );
+            IMarcaControle controle = new MarcaControle();
+            Modelo objeto = new Modelo(0, jTextFieldDescricao.getText().toUpperCase(), jTextFieldURL.getText(),controle.buscar(jComboBoxMarca.getSelectedItem().toString()) );
 
             modeloControle.incluir(objeto);
             jTextFieldDescricao.setText("");
@@ -443,9 +460,28 @@ public class TelaDosModelos extends javax.swing.JFrame {
         jTextFieldID.setText(jTableModelo.getValueAt(jTableModelo.getSelectedRow(), 0).toString());
         jTextFieldDescricao.setText(jTableModelo.getValueAt(jTableModelo.getSelectedRow(), 1).toString());
         jTextFieldURL.setText(jTableModelo.getValueAt(jTableModelo.getSelectedRow(), 2).toString());
-        jLabelImagemMarca.setIcon((Icon) jTableModelo.getValueAt(jTableModelo.getSelectedRow(), 3));
-        jLabelImagemModelo.setIcon((Icon) jTableModelo.getValueAt(jTableModelo.getSelectedRow(), 4));
+
+        String nomeUrl = jTextFieldURL.getText();
+        ImageIcon iconLogo = new ImageIcon(nomeUrl);
+        iconLogo.setImage(iconLogo.getImage().getScaledInstance(jLabelImagemModelo.getWidth(), jLabelImagemModelo.getHeight(), 1));
+        jLabelImagemModelo.setIcon(iconLogo);
     }//GEN-LAST:event_jTableModeloMouseClicked
+
+    private void jComboBoxMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcaActionPerformed
+        // TODO add your handling code here:
+        try {
+            ArrayList <Marca> lista = marcaControle.listagem();
+            for(int i = 0; i <lista.size();i++){
+            if(jComboBoxMarca.getSelectedItem().equals(lista.get(i).getDescricao())){
+                ImageIcon marca = new ImageIcon(lista.get(i).getUrl());
+                marca.setImage(marca.getImage().getScaledInstance(jLabelImagemMarca.getWidth(), jLabelImagemMarca.getHeight(), 1));
+                jLabelImagemMarca.setIcon(marca);
+            }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(TelaDosModelos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboBoxMarcaActionPerformed
     public class CellRenderer extends DefaultTableCellRenderer{
     JLabel jLabelLogo = new JLabel();
     @Override

@@ -1,1 +1,9 @@
-9;EVFDVCDS;C:\Users\Aluno\Downloads\ProjetoLocaGyn24_10-20221025T234825Z-001\ProjetoLocaGyn26_10\src\com\locagyn\imagensdemodelos\download (1).jpg;0
+22;CRIANÇA GRANDONA;C:\Users\Aluno\Desktop\RaphtaliaMarca.jpg;21
+23;CRIANÇA PEITUDA;C:\Users\Aluno\Desktop\RaphtaliaMarca.jpg;19
+24;CRIANÇA TABUA RETA;C:\Users\Aluno\Desktop\ReiMamadas.jpg;20
+25;RIANÇA PÉ NA TABUd;C:\Users\Aluno\Desktop\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\imagensdemodelos\download (1).jpg;0
+26;SACODE NERVOSO;C:\Users\Aluno\Desktop\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\imagensdemodelos\download (1).jpg;20
+27;RESDSZ;C:\Users\Aluno\Desktop\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\imagensdemodelos\download (1).jpg;20
+30;TERSFESFSD;C:\Users\Aluno\Desktop\ReiMamadas.jpg;19
+31;SACODE NERVOSOASDFGHJKL;C:\Users\Aluno\Desktop\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\imagensdemodelos\download (1).jpg;19
+32;CRIANÇA PEITUDAASDFGHJ;C:\Users\Aluno\Desktop\RaphtaliaMarca.jpg;28

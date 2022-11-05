@@ -1,5 +1,3 @@
-13;CHEVROLET;C:\Users\ageuv\OneDrive\Documentos\GitHub\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\logomarcas\chevrolet.jpg
-14;fdsdsa;C:\Users\ageuv\OneDrive\Documentos\GitHub\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\logomarcas\renautl.jpg
-15;FIAT;C:\Users\ageuv\OneDrive\Documentos\GitHub\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\logomarcas\fiat.jpg
-16;NISSAN;C:\Users\ageuv\OneDrive\Documentos\GitHub\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\logomarcas\nissan.jpg
-17;RENAULT;C:\Users\ageuv\OneDrive\Documentos\GitHub\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\logomarcas\renautl.jpg
+7;CHEVROLET;C:\Users\Aluno\Desktop\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\logomarcas\chevrolet.jpg
+8;NISSAN;C:\Users\Aluno\Desktop\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\logomarcas\nissan.jpg
+9;FIAT;C:\Users\Aluno\Desktop\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\logomarcas\fiat.jpg

@@ -5,7 +5,6 @@
 package com.locagyn.persistencia;
 import com.locagyn.ferramentas.GeradorIdentificador;
 import com.locagyn.modelos.Cliente;
-import com.locagyn.modelos.Modelo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;

@@ -7,14 +7,10 @@ package com.locagyn.visao;
 
 import com.locagyn.controle.ClienteControle;
 import com.locagyn.controle.IClienteControle;
-import com.locagyn.extras.Endereco;
 import com.locagyn.modelos.Cliente;
 import java.util.ArrayList;
-import java.util.Iterator;
-import javax.swing.table.DefaultTableModel;
 import com.locagyn.extras.Endereco;
 import com.locagyn.extras.Telefone;
-import com.locagyn.visao.TelaDasMarcas;
 
 /**
  *

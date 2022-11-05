@@ -1,4 +1,8 @@
-1;FIAT;C:\Users\Aluno\Downloads\fiat.jpg
-2;NISSAN;C:\Users\Aluno\Downloads\nissan.jpg
-3;RENAULT;C:\Users\Aluno\Downloads\renautl.jpg
-4;CHEVROLET;C:\Users\Aluno\Downloads\chevrolet.jpg
+19;MISA, MUSA DAS MAMADAS;C:\Users\Aluno\Desktop\MisaCaranga.jpg
+20;MISA AMANE;C:\Users\Aluno\Desktop\MisaCaranga.jpg
+21;GURA, musa das mamadas;C:\Users\Aluno\Desktop\GuraPopote.jpg
+28;BOBONA;C:\Users\Aluno\Desktop\RaphtaliaMarca.jpg
+29;CRIANÇA EM BUSCA DE UM PEDOFILO;C:\Users\Aluno\Desktop\RaphtaliaMarca.jpg
+33;FSAFGAwertyu;C:\Users\Aluno\Desktop\GuraPopote.jpg
+34;KJHVHGVHGV;C:\Users\Aluno\Desktop\RaphtaliaMarca.jpg
+35;M9UIG7IFG8YU;C:\Users\Aluno\Desktop\MisaCaranga.jpg
