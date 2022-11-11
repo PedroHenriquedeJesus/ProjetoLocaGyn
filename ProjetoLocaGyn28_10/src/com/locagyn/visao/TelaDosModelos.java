@@ -10,8 +10,6 @@ import com.locagyn.controle.MarcaControle;
 import com.locagyn.controle.ModeloControle;
 import com.locagyn.modelos.Marca;
 import com.locagyn.modelos.Modelo;
-//import com.locagyn.persistencia.IMarcaDao;
-//import com.locagyn.persistencia.MarcaDao;
 import java.awt.Component;
 import java.io.File;
 import java.util.ArrayList;
@@ -44,19 +42,18 @@ public class TelaDosModelos extends javax.swing.JFrame {
     public TelaDosModelos() {
         initComponents();
         try {
-            ArrayList <Marca> combolista = marcaControle.listagem();
-            int lim = combolista.size();
+            ArrayList <Marca> combobox = marcaControle.listagem();
+            int lim = combobox.size();
             String marcas[] = new String[lim];
 
-            for(int i = 0; i < combolista.size(); i++){
-                marcas[i] = combolista.get(i).getDescricao();
+            for(int i = 0; i < combobox.size(); i++){
+                marcas[i] = combobox.get(i).getDescricao();
                 jComboBoxMarca.addItem(marcas[i]);
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        preencherBoxMarcas();
         setExtendedState(MAXIMIZED_BOTH);
         jTextFieldID.setEnabled(false);
         jLabelImagemMarca.setEnabled(true);
@@ -71,23 +68,7 @@ public class TelaDosModelos extends javax.swing.JFrame {
         }
     }
 
-    public void preencherBoxMarcas() {
-        try {
-           
-            IMarcaControle objetoDao = marcaControle;
-            ArrayList<Marca> lista = objetoDao.listagem();
-            int tamanho = lista.size();
-            String[] relacaoMarcas = new String[tamanho];
 
-            for (int i = 0; i < lista.size(); i++) {
-                relacaoMarcas[i] = lista.get(i).getDescricao();
-                jComboBoxMarca.addItem(relacaoMarcas[i]);
-
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(TelaDosModelos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     private void imprimirDadosNaGrid(ArrayList<Modelo> listaDeModelos) {
         try {
