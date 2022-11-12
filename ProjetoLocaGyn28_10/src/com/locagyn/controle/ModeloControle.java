@@ -42,18 +42,23 @@ public class ModeloControle implements IModeloControle{
     
     @Override
     public void incluir(Modelo objeto) throws Exception {
-        if(buscarModelo(objeto.getDescricao())){
-            throw new Exception("Modelo já cadastrado!");
-        }
+        if(buscarModelo(objeto.getDescricao())){throw new Exception("Modelo já cadastrado!");}
+        
+        if (objeto.getDescricao().equals("") || objeto.getDescricao().equals(" ")){throw new Exception("Insira a descrição!");}
+        
+        if (objeto.getUrl().equals("") || objeto.getUrl().equals(" ")){throw new Exception("Insira a imagem!");}
             modeloPersistencia.incluir(objeto);
     }
 
     @Override
     public void alterar(Modelo objeto) throws Exception {
-        if (buscarModelo(objeto.getDescricao())) {
-            throw new Exception("Marca já Cadastrada");
-        }
-        modeloPersistencia.alterar(objeto);
+        if (buscarModelo(objeto.getDescricao())) {throw new Exception("Marca já Cadastrada");} 
+        
+        if (objeto.getDescricao().equals("") || objeto.getDescricao().equals(" ")){throw new Exception("Insira a descrição!");}
+        
+        if (objeto.getUrl().equals("") || objeto.getUrl().equals(" ")){throw new Exception("Insira a imagem!");}
+            modeloPersistencia.alterar(objeto);
+        
     }
     
 

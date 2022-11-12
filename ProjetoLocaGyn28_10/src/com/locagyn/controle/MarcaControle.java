@@ -39,15 +39,21 @@ public class MarcaControle implements IMarcaControle{
         if(buscarMarca(objeto.getDescricao())){
             throw new Exception("Marca já foi cadastrada");
         }
+        if (objeto.getDescricao().equals("") || objeto.getDescricao().equals(" ")){throw new Exception("Insira a descrição!");}
         
+        if (objeto.getUrl().equals("") || objeto.getUrl().equals(" ")){throw new Exception("Insira a imagem!");}
+   
         marcaPersistencia.incluir(objeto);
     }
 
     @Override
     public void alterar(Marca objeto) throws Exception {
-        if (buscarMarca(objeto.getDescricao())) {
-            throw new Exception("Marca já Cadastrada");
-        }
+        if (buscarMarca(objeto.getDescricao())) {throw new Exception("Marca já Cadastrada");}
+        
+        if (objeto.getDescricao().equals("") || objeto.getDescricao().equals(" ")){throw new Exception("Insira a descrição!");}
+        
+        if (objeto.getUrl().equals("") || objeto.getUrl().equals(" ")){throw new Exception("Insira a imagem!");}
+
         marcaPersistencia.alterar(objeto);
     }
 

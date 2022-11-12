@@ -19,7 +19,6 @@ public class Modelo extends Marca{
     public Modelo(){}
     
     public Modelo(int id, String descricao, String url, Marca objetoMarca)throws Exception{
-       if(descricao.equals("") || url.equals(""))throw new Exception("Insira todos os dados necessarios!");
        this.id = id;
        this.descricao = descricao;
        this.url = url;

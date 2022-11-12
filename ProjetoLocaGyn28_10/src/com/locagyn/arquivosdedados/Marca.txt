@@ -1,3 +1,0 @@
-7;CHEVROLET;C:\Users\Aluno\Desktop\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\logomarcas\chevrolet.jpg
-8;NISSAN;C:\Users\Aluno\Desktop\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\logomarcas\nissan.jpg
-9;FIAT;C:\Users\Aluno\Desktop\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\logomarcas\fiat.jpg

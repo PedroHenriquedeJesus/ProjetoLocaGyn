@@ -8,6 +8,8 @@ import com.locagyn.controle.IMarcaControle;
 import com.locagyn.controle.IModeloControle;
 import com.locagyn.controle.MarcaControle;
 import com.locagyn.controle.ModeloControle;
+import com.locagyn.ferramentas.CriarArquivoTXT;
+import com.locagyn.ferramentas.GeradorIdentificador;
 import com.locagyn.modelos.Marca;
 import com.locagyn.modelos.Modelo;
 import java.awt.Component;
@@ -35,6 +37,8 @@ public class TelaDosModelos extends javax.swing.JFrame {
     IModeloControle modeloControle = new ModeloControle();
     IMarcaControle marcaControle = new MarcaControle();
     String urlArquivo = "";
+    File idArquivo =  new File("./src/com/locagyn/arquivosdedados/idGerado.txt");
+    File arquivoModelo = new File("./src/com/locagyn/arquivosdedados/Modelo.txt");
 
     /**
      * Creates new form TelaDosModelos
@@ -62,10 +66,13 @@ public class TelaDosModelos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         getContentPane().setBackground(new java.awt.Color(0, 102, 51));
         try {
+            if(!idArquivo.exists())GeradorIdentificador.criarArquivoDeID();
+            if(!arquivoModelo.exists())CriarArquivoTXT.criarTXTModelo();
             imprimirDadosNaGrid(modeloControle.listagem());
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro);
         }
+        
     }
 
 
@@ -396,7 +403,9 @@ public class TelaDosModelos extends javax.swing.JFrame {
             modeloControle.incluir(objeto);
             jTextFieldDescricao.setText("");
             imprimirDadosNaGrid(modeloControle.listagem());
-
+            jLabelImagemMarca.setIcon(null);
+            jLabelImagemModelo.setIcon(null);
+            jTextFieldURL.setText("");
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
@@ -425,13 +434,15 @@ public class TelaDosModelos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-        try {Marca marca = new Marca();
-            Modelo n = new Modelo(Integer.parseInt(jTextFieldID.getText()),jTextFieldDescricao.getText(), jTextFieldURL.getText(),marca );
+        try {
+            IMarcaControle controle = new MarcaControle();
+            Modelo objeto = new Modelo(Integer.parseInt(jTextFieldID.getText()),jTextFieldDescricao.getText().toUpperCase(), jTextFieldURL.getText(),controle.buscar(jComboBoxMarca.getSelectedItem().toString()));
 
-            modeloControle.alterar(n);
+            modeloControle.alterar(objeto);
             imprimirDadosNaGrid(modeloControle.listagem());
         } catch (Exception ex) {
-            Logger.getLogger(TelaDasMarcas.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(TelaDasMarcas.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex);
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAlterarActionPerformed

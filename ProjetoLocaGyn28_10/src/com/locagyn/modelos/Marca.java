@@ -17,7 +17,6 @@ public class Marca {
     public Marca(){
     }
     public Marca(int id, String descricao, String url)throws Exception{
-        if ( url.equals("") || descricao.equals(""))throw new Exception("Insira todos os dados necessarios!");
         this.id = id;
         this.descricao = descricao;
         this.url = url;

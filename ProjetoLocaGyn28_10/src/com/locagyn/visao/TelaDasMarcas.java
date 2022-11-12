@@ -7,6 +7,8 @@ package com.locagyn.visao;
 import javax.swing.JOptionPane;
 import com.locagyn.controle.IMarcaControle;
 import com.locagyn.controle.MarcaControle;
+import com.locagyn.ferramentas.CriarArquivoTXT;
+import com.locagyn.ferramentas.GeradorIdentificador;
 import com.locagyn.modelos.Marca;
 import java.awt.Component;
 import java.io.File;
@@ -32,6 +34,8 @@ public class TelaDasMarcas extends javax.swing.JFrame {
     //Atributos 
     IMarcaControle marcaControle = new MarcaControle();
     String urlArquivo = "";
+    File idArquivo =  new File("./src/com/locagyn/arquivosdedados/idGerado.txt");
+    File arquivoMarca = new File("./src/com/locagyn/arquivosdedados/Marca.txt");
     /**
      * Creates new form TelaDasMarcas
      */
@@ -44,10 +48,13 @@ public class TelaDasMarcas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         getContentPane().setBackground(new java.awt.Color(0, 102, 51));
         try {
+            if(!idArquivo.exists())GeradorIdentificador.criarArquivoDeID();
+            if(!arquivoMarca.exists())CriarArquivoTXT.criarTXTMarca();
             imprimirDadosNaGrid(marcaControle.listagem());
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro);
         }
+        
         
     }
 
@@ -366,7 +373,7 @@ public class TelaDasMarcas extends javax.swing.JFrame {
             marcaControle.incluir(objeto);
             jTextFieldDescricao.setText("");
             imprimirDadosNaGrid(marcaControle.listagem());
-
+            jLabelImagemPNG.setIcon(null);
         }
         catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
@@ -376,10 +383,10 @@ public class TelaDasMarcas extends javax.swing.JFrame {
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
 
         try {
-            Marca n = new Marca(Integer.parseInt(jTextFieldID.getText()),
-                jTextFieldDescricao.getText(), jTextFieldURL.getText());
+            Marca objeto = new Marca(Integer.parseInt(jTextFieldID.getText()),
+                jTextFieldDescricao.getText().toUpperCase(), jTextFieldURL.getText());
 
-            marcaControle.alterar(n);
+            marcaControle.alterar(objeto);
             imprimirDadosNaGrid(marcaControle.listagem());
         } catch (Exception ex) {
             Logger.getLogger(TelaDasMarcas.class.getName()).log(Level.SEVERE, null, ex);
