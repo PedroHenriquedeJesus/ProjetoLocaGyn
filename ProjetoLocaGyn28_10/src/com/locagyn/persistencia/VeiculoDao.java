@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @author Aluno
  */
 public class VeiculoDao implements IVeiculoDao{
-    private String nomeDoArquivo = ".\\src\\com\\locagyn\\arquivosdedados\\Marca.txt";;
+    private String nomeDoArquivo = ".\\src\\com\\locagyn\\arquivosdedados\\Marca.txt";
     
     public VeiculoDao(){
 }
