@@ -100,6 +100,10 @@ public class Veiculo extends Modelo{
         this.anoModelo = anoModelo;
     }
 
+    public void setCombustivel(EnumTipoDeCombustivel combustivel) {
+        this.combustivel = combustivel;
+    }
+    
     public EnumTipoDeCombustivel getCombustivel() {
         //String[] combustivel = new String[EnumTipoDeCombustivel.values().length];
        // for (EnumTipoDeCombustivel combustivelEnum : EnumTipoDeCombustivel.values()) {
@@ -118,11 +122,19 @@ public class Veiculo extends Modelo{
         this.quilometragem = quilometragem;
     }
 
+    public void setTipo(EnumTipoDoVeiculo tipo) {
+        this.tipo = tipo;
+    }
+
     public EnumTipoDoVeiculo getTipo() {
         return tipo;
     }
 
-   
+    public void setSituacao(EnumSituacao situacao) {
+        this.situacao = situacao;
+    }
+
+    
     public EnumSituacao getSituacao() {
         return situacao;
     }
@@ -131,7 +143,7 @@ public class Veiculo extends Modelo{
     @Override
     public String toString() {
         return  id + ";" + placa + ";" + renavam + ";" + precoCompra + ";"+ precoVenda + ";" 
-                +precoCompra + ";" + anoFabricacao + ";"+anoModelo + ";"+quilometragem +";" 
+                + anoFabricacao + ";"+anoModelo + ";"+quilometragem +";" 
                 +combustivel +";" +tipo +";" +situacao +";" +objetoMarca.getId();
     }
     

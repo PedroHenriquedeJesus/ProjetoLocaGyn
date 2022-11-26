@@ -4,13 +4,18 @@
  */
 package com.locagyn.persistencia;
 
+import com.locagyn.enums.EnumSituacao;
+import com.locagyn.enums.EnumTipoDeCombustivel;
+import com.locagyn.enums.EnumTipoDoVeiculo;
 import com.locagyn.ferramentas.GeradorIdentificador;
 import com.locagyn.modelos.Veiculo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -62,12 +67,25 @@ public class VeiculoDao implements IVeiculoDao{
             FileReader fr = new FileReader(nomeDoArquivo);
             BufferedReader br  = new BufferedReader(fr);
             String linha = "";
+            
+            SimpleDateFormat formatData;
+            formatData = new SimpleDateFormat("dd/MM/yyyy");
+            
             while((linha=br.readLine())!=null){
                 Veiculo objetoVeiculo = new Veiculo();
                 String vetorString[] = linha.split(";");
                 objetoVeiculo.setId(Integer.parseInt(vetorString[0]));
-                objetoVeiculo.setDescricao(vetorString[1]);
-                objetoVeiculo.setUrl(vetorString[2]);
+                objetoVeiculo.setPlaca(vetorString[1]);
+                objetoVeiculo.setRenavam(Integer.parseInt(vetorString[2]));
+                objetoVeiculo.setPrecoCompra(Integer.parseInt(vetorString[3]));
+                objetoVeiculo.setPrecoVenda(Integer.parseInt(vetorString[4]));
+                objetoVeiculo.setAnoFabricacao(formatData.parse(vetorString[5]));
+                objetoVeiculo.setAnoModelo(formatData.parse(vetorString[6]));
+                objetoVeiculo.setCombustivel(EnumTipoDeCombustivel.valueOf(vetorString[7]));
+                objetoVeiculo.setQuilometragem(Integer.parseInt(vetorString[8]));
+                objetoVeiculo.setTipo(EnumTipoDoVeiculo.valueOf(vetorString[9]));
+                objetoVeiculo.setSituacao(EnumSituacao.valueOf(vetorString[10]));
+                
                 listaDeVeiculos.add((Veiculo)objetoVeiculo);
             }
             br.close();
