@@ -22,7 +22,7 @@ public class Categoria extends Veiculo{
     
     public Categoria(String combustivel, String tipo, String situacao, int id, String descricao, String url, Marca objetoModelo, String placa, int renavam, float precoCompra,
                     float precoVenda, Date anoFabricacao, Date anoModelo, int quilometragem, float valorLocacao) throws Exception{
-        super(combustivel, tipo, situacao, id, descricao, url, objetoModelo, placa, renavam, precoCompra, precoVenda, anoFabricacao, anoModelo, quilometragem);
+        super(combustivel, tipo, situacao, id, placa, renavam, precoCompra, precoVenda, anoFabricacao, anoModelo, quilometragem);
     this.id = id;
     this.descricao = descricao;
     this.valorLocacao = valorLocacao;

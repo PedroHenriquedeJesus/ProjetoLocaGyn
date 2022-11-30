@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.locagyn.modelos;
-import com.locagyn.controle.MarcaControle;
 /**
  *
  * @author Aluno

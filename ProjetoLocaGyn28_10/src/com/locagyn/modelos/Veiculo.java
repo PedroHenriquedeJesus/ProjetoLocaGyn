@@ -29,9 +29,9 @@ public class Veiculo extends Modelo{
     
     public Veiculo(){}
     
-    public Veiculo(String combustivel, String tipo, String situacao, int id, String descricao, String url, Marca objetoModelo, String placa, int renavam, float precoCompra,
+    public Veiculo(String combustivel, String tipo, String situacao, int id, String placa, int renavam, float precoCompra,
                    float precoVenda, Date anoFabricacao, Date anoModelo, int quilometragem)throws Exception {
-       super(id, descricao, url, objetoModelo);
+      
        this.combustivel = EnumTipoDeCombustivel.valueOf(combustivel);
        this.situacao = EnumSituacao.valueOf(situacao);
        this.tipo = EnumTipoDoVeiculo.valueOf(tipo);
@@ -44,10 +44,12 @@ public class Veiculo extends Modelo{
        this.quilometragem = quilometragem;
     }
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }

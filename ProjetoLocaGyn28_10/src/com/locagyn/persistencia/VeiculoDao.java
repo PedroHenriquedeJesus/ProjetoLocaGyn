@@ -15,18 +15,19 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
  * @author Aluno
  */
 public class VeiculoDao implements IVeiculoDao{
-    private String nomeDoArquivo = ".\\src\\com\\locagyn\\arquivosdedados\\Marca.txt";
+    private String nomeDoArquivo = "";
     
     public VeiculoDao(){
+    nomeDoArquivo = ".\\src\\com\\locagyn\\arquivosdedados\\Marca.txt";
+
 }
-       @Override
+    @Override
     public void incluir(Veiculo objeto) throws Exception {
         try{
             //cria o arquivo
@@ -60,6 +61,8 @@ public class VeiculoDao implements IVeiculoDao{
         }
         bw.close();
     }
+    
+    
     @Override
     public ArrayList<Veiculo> listagem() throws Exception {
         try {
@@ -95,4 +98,10 @@ public class VeiculoDao implements IVeiculoDao{
             throw erro;
         }
     }
+
+    @Override
+    public void buscar(Veiculo objeto) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+   
 }

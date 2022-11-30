@@ -14,24 +14,46 @@ import java.util.Iterator;
  * @author Aluno
  */
 public class VeiculoControle implements IVeiculoControle{
-    IVeiculoDao veiculopersistencia = null;
+    IVeiculoDao veiculoPersistencia = null;
     public VeiculoControle(){
-        this.veiculopersistencia = new VeiculoDao();
+        this.veiculoPersistencia = new VeiculoDao();
     }
-    public boolean buscarModelo(String descricao) throws Exception {
+    private boolean buscarVeiculo(String placa) throws Exception {
         try {
-        ArrayList<Veiculo> listagem = veiculopersistencia.listagem();
+        ArrayList<Veiculo> listagem = veiculoPersistencia.listagem();
         Iterator<Veiculo> lista = listagem.iterator();
             while (lista.hasNext()) {                
                 Veiculo aux = lista.next();
-              //  if(aux.getDescricao().equalsIgnoreCase(descricao)){
-                  //  return true;
-               // }
+                if(aux.getPlaca().equalsIgnoreCase(placa)){
+                    return true;
+                }
             }
         } catch (Exception erro) {
             throw erro;
         }
         return false;
     }
+    public void incluir(Veiculo objeto)throws Exception {
+         if(buscarVeiculo(objeto.getPlaca())){throw new Exception("Veiculo já cadastrado!");}
+         
+         if (objeto.getPlaca().equals("") || objeto.getPlaca().equals(" ")){throw new Exception("Insira a Placa do Veiculo!");}
+            
+        veiculoPersistencia.incluir(objeto);
+    }
     
+    public void alterar(Veiculo objeto) throws Exception {
+         if(buscarVeiculo(objeto.getPlaca())){throw new Exception("Veiculo já cadastrado!");}
+         
+         if (objeto.getPlaca().equals("") || objeto.getPlaca().equals(" ")){throw new Exception("Insira a Placa do Veiculo!");}
+            
+        veiculoPersistencia.alterar(objeto);
+    }
+    public ArrayList<Veiculo> listagem() throws Exception {
+        
+        return  veiculoPersistencia.listagem();
+    }
+    
+   //  public Veiculo buscar(int ID) throws Exception {
+    //    return veiculoPersistencia.buscar(ID);
+  //  }
 }
