@@ -4,10 +4,15 @@
  */
 package com.locagyn.controle;
 
+import com.locagyn.modelos.Veiculo;
+import java.util.ArrayList;
+
 /**
  *
  * @author Aluno
  */
 public interface IVeiculoControle {
-    
+    void incluir(Veiculo objeto)throws Exception;
+    void alterar(Veiculo objeto)throws Exception;
+    ArrayList<Veiculo> listagem()throws Exception;
 }

@@ -33,6 +33,7 @@ public class VeiculoControle implements IVeiculoControle{
         }
         return false;
     }
+    @Override
     public void incluir(Veiculo objeto)throws Exception {
          if(buscarVeiculo(objeto.getPlaca())){throw new Exception("Veiculo já cadastrado!");}
          
@@ -41,6 +42,7 @@ public class VeiculoControle implements IVeiculoControle{
         veiculoPersistencia.incluir(objeto);
     }
     
+    @Override
     public void alterar(Veiculo objeto) throws Exception {
          if(buscarVeiculo(objeto.getPlaca())){throw new Exception("Veiculo já cadastrado!");}
          
@@ -48,6 +50,7 @@ public class VeiculoControle implements IVeiculoControle{
             
         veiculoPersistencia.alterar(objeto);
     }
+    @Override
     public ArrayList<Veiculo> listagem() throws Exception {
         
         return  veiculoPersistencia.listagem();
