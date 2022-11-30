@@ -92,7 +92,6 @@ public class MarcaDao implements IMarcaDao{
                 return Integer.compare(marca1.getId(), marca2.getId());
             }
         
-        
     }
 
     @Override
@@ -103,41 +102,23 @@ public class MarcaDao implements IMarcaDao{
             FileReader fr = new FileReader(nomeDoArquivoNoDisco);
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
-            System.out.println("oi");
             while ((linha=br.readLine()) != null) {
                 String vetorString[]=linha.split(";");
                 if(Integer.parseInt(vetorString[0]) == Id){
-                    System.out.println("oi");
-                    Marca objetomarca = new Marca();
-                    objetomarca.setId(Integer.parseInt(vetorString[0]));
-                    objetomarca.setDescricao(vetorString[1]);
-                    objetomarca.setUrl(vetorString[2]);
-                    System.out.println(objetomarca.getDescricao());
-                    return objetomarca;
+                    Marca objetoMarca = new Marca();
+                    objetoMarca.setId(Integer.parseInt(vetorString[0]));
+                    objetoMarca.setDescricao(vetorString[1]);
+                    objetoMarca.setUrl(vetorString[2]);
+                    System.out.println(objetoMarca.getDescricao());
+                    return objetoMarca;
                     
                 }
                 
-            }
-            
-            
-           
-            
-            
-            
+            }    
         } catch (Exception e) {
-        }
-        
-        
-        
-        
-        
-        
+        } 
         Marca objetomarca = new Marca();
-           return objetomarca;
-        
-        
-        
-        
+           return objetomarca;   
     }
 
     @Override
@@ -147,42 +128,25 @@ public class MarcaDao implements IMarcaDao{
             FileReader fr = new FileReader(nomeDoArquivoNoDisco);
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
-            System.out.println("oi");
             while ((linha=br.readLine()) != null) {
                 String vetorString[]=linha.split(";");
                 if(vetorString[1].equals(ID)){
-                    System.out.println("oi");
                     Marca objetomarca = new Marca();
                     objetomarca.setId(Integer.parseInt(vetorString[0]));
                     objetomarca.setDescricao(vetorString[1]);
                     objetomarca.setUrl(vetorString[2]);
                     System.out.println(objetomarca.getDescricao());
                     return objetomarca;
-                    
                 }
                 
             }
-            
-            
-           
-            
-            
-            
-        } catch (Exception e) {
+   
+        } catch (Exception erro) {
         }
-        
-        
-        
-        
-        
-        
         Marca objetomarca = new Marca();
            return objetomarca;
-        
-        
-        
-        
-    }}
+    }
+}
         
    
         

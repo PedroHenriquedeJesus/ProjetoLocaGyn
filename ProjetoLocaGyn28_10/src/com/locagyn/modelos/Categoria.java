@@ -117,5 +117,10 @@ public class Categoria extends Veiculo{
     public void setObjetoMarca(Marca objetoMarca) {
         this.objetoMarca = objetoMarca;
     }
+
+    @Override
+    public String toString() {
+        return id + ";" + descricao + ";" + valorLocacao;
+    }
     
 }
