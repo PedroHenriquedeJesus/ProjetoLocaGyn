@@ -99,9 +99,9 @@ public class VeiculoDao implements IVeiculoDao{
         }
     }
 
-    @Override
-    public void buscar(Veiculo objeto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    //@Override
+    //public void buscar(Veiculo objeto) throws Exception {
+     //   throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+   // }
    
 }

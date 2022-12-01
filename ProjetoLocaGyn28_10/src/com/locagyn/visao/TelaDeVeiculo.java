@@ -4,12 +4,22 @@
  */
 package com.locagyn.visao;
 
+import com.locagyn.controle.IVeiculoControle;
+import com.locagyn.controle.VeiculoControle;
 import javax.swing.JComboBox;
 import com.locagyn.enums.EnumTipoDeCombustivel;
 import com.locagyn.enums.EnumTipoDoVeiculo;
+import com.locagyn.modelos.Veiculo;
+import com.locagyn.visao.TelaDasMarcas.CellRenderer;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +27,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class TelaDeVeiculo extends javax.swing.JFrame {
 
+    IVeiculoControle veiculoPersistencia = new VeiculoControle();
     /**
      * Creates new form TelaDeVeiculo
      */
@@ -25,7 +36,16 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
         jComboBoxCombustivel.setModel(new DefaultComboBoxModel<>(EnumTipoDeCombustivel.values()));
         jComboBoxEnumTipoDoVeiculo.setModel(new DefaultComboBoxModel<>(EnumTipoDoVeiculo.values()));
         setExtendedState(MAXIMIZED_BOTH);
+        jTextFieldID.setEnabled(false);
+
+        
+        try {
+            imprimirDados(veiculoPersistencia.listagem());
+        } catch (Exception ex) {
+            Logger.getLogger(TelaDeVeiculo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,7 +73,7 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
         jComboBoxEnumTipoDoVeiculo = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldPlaca = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -73,7 +93,6 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
         jButtonIncluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButtonBuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -183,13 +202,6 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButtonBuscar.setText("BUSCAR");
-        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -236,7 +248,7 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(jLabel8)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextField1))
+                                                .addComponent(jTextFieldPlaca))
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(jLabel9)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -271,8 +283,6 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
                                         .addComponent(jTextField8))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(67, 67, 67)
-                                .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))))
@@ -307,7 +317,7 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel8)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel9)
@@ -341,8 +351,7 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAlterar)
-                    .addComponent(jButtonIncluir)
-                    .addComponent(jButtonBuscar))
+                    .addComponent(jButtonIncluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -387,6 +396,42 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+     public void imprimirDados(ArrayList<Veiculo> listaDeVeiculos) {
+        try {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+            //Limpa a tabela 
+            model.setNumRows(0);
+            Iterator<Veiculo> lista = listaDeVeiculos.iterator();
+            while (lista.hasNext()) {
+                String[] saida = new String[11];
+                Veiculo aux = lista.next();
+                saida[0] = aux.getId() + "";
+                saida[1] = aux.getPlaca();
+                saida[2] = aux.getRenavam() + "";
+                saida[3] = aux.getPrecoVenda() + "";
+                saida[4] = aux.getPrecoCompra() + "";
+                saida[5] = aux.getAnoFabricacao()+"";
+                saida[6] = aux.getAnoModelo()+"";
+                saida[7] = aux.getCombustivel().toString();
+                saida[8] = aux.getQuilometragem() + "";
+                saida[9] = aux.getTipo().toString();
+                saida[10] = aux.getSituacao().toString();
+
+                //Incluir nova linha na Tabela,saida[0]
+                Object[] dados = {saida[0], saida[1], saida[2], saida[3], saida[4], saida[5], saida[6], saida[7], saida[8], saida[9],
+                    saida[10]};
+                model.addRow(dados);
+            }
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
+
+    }
+
+    
+    
+    
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
 
         // try {
@@ -415,10 +460,6 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
             //     JOptionPane.showMessageDialog(this, erro.getMessage());
             //  }
     }//GEN-LAST:event_jButtonIncluirActionPerformed
-
-    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonBuscarActionPerformed
    
     /**
      * @param args the command line arguments
@@ -457,7 +498,6 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
-    private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonIncluir;
     private javax.swing.JComboBox<String> jComboBoxCategoria;
     private javax.swing.JComboBox<EnumTipoDeCombustivel> jComboBoxCombustivel;
@@ -485,7 +525,6 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -494,5 +533,6 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextFieldID;
+    private javax.swing.JTextField jTextFieldPlaca;
     // End of variables declaration//GEN-END:variables
 }
