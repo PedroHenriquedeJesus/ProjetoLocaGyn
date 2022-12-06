@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.locagyn.persistencia;
+import com.locagyn.extras.Endereco;
+import com.locagyn.extras.Telefone;
 import com.locagyn.ferramentas.GeradorIdentificador;
 import com.locagyn.modelos.Cliente;
 import java.io.BufferedReader;
@@ -57,20 +59,36 @@ public class ClienteDao implements IClienteDao {
     @Override
     public ArrayList<Cliente> listagem() throws Exception {
         try {
-            ArrayList<Cliente> listaDeModelos = new ArrayList<Cliente>();
+            ArrayList<Cliente> listaDeClientes = new ArrayList<Cliente>();
             FileReader fr = new FileReader(nomeDoArquivo);
             BufferedReader br  = new BufferedReader(fr);
             String linha = "";
             while((linha=br.readLine())!=null){
                 Cliente objetoCliente = new Cliente();
+                Endereco objetoEndereco = new Endereco();
+                Telefone objetoTelefone = new Telefone();
                 String vetorString[] = linha.split(";");
                 objetoCliente.setId(Integer.parseInt(vetorString[0]));
-                objetoCliente.setDescricao(vetorString[1]);
-                objetoCliente.setUrl(vetorString[2]);
-                listaDeModelos.add((Cliente)objetoCliente);
+                objetoCliente.setCpfCnpj(vetorString[1]);
+                objetoCliente.setNome(vetorString[2]);
+                objetoCliente.setRazaoSocial(vetorString[3]);
+                objetoCliente.setIdentidade(vetorString[4]);
+                objetoCliente.setEmail(vetorString[5]);
+                objetoEndereco.setLogradouro(vetorString[6]);
+                objetoEndereco.setComplemento(vetorString[7]);
+                objetoEndereco.setCep(Integer.parseInt(vetorString[8]));
+                objetoEndereco.setBairro(vetorString[9]);
+                objetoEndereco.setCidade(vetorString[10]);
+                objetoEndereco.setEstado(vetorString[11]);
+                objetoTelefone.setDdi(Integer.parseInt(vetorString[12]));
+                objetoTelefone.setDdd(Integer.parseInt(vetorString[13]));
+                objetoTelefone.setNumero(Integer.parseInt(vetorString[14]));
+                objetoCliente.setEndereco(objetoEndereco);
+                objetoCliente.setTelefone(objetoTelefone);
+                listaDeClientes.add(objetoCliente);
             }
             br.close();
-            return listaDeModelos;
+            return listaDeClientes;
         }
         catch(Exception erro){
             throw erro;

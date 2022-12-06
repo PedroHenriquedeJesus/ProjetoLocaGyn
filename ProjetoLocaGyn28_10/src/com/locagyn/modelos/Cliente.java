@@ -5,6 +5,8 @@
 package com.locagyn.modelos;
 
 import com.locagyn.enums.EnumTipoCliente;
+import com.locagyn.extras.Endereco;
+import com.locagyn.extras.Telefone;
 
 
 
@@ -20,10 +22,11 @@ public class Cliente extends Modelo {
     private String Identidade = "";
     private String Email = "";
     EnumTipoCliente clienteTipo;
-    
+    Telefone objetotelefone = new Telefone();
+    Endereco objetoendereco = new Endereco();
 
     public Cliente(int id,String cpfCnpj, String razaoSocial, String nome, String Identidade, String Email, 
-            String endereco, String telefone, String clienteTipo)throws Exception {
+             String clienteTipo, Telefone telefone, Endereco endereco)throws Exception {
     this.id = id; 
     this.cpfCnpj = cpfCnpj;
     this.razaoSocial = razaoSocial;
@@ -31,6 +34,24 @@ public class Cliente extends Modelo {
     this.Identidade = Identidade; 
     this.Email = Email;
     this.clienteTipo = EnumTipoCliente.valueOf(clienteTipo);
+    this.objetoendereco = endereco;
+    this.objetotelefone = telefone;
+    }
+
+    public Telefone getObjetotelefone() {
+        return objetotelefone;
+    }
+
+    public void setObjetotelefone(Telefone objetotelefone) {
+        this.objetotelefone = objetotelefone;
+    }
+
+    public Endereco getObjetoendereco() {
+        return objetoendereco;
+    }
+
+    public void setObjetoendereco(Endereco objetoendereco) {
+        this.objetoendereco = objetoendereco;
     }
 
     public Cliente() {
@@ -91,10 +112,17 @@ public class Cliente extends Modelo {
   
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", cpfCnpj=" + cpfCnpj + ", razaoSocial=" + razaoSocial + ", nome=" + nome + ", Identidade=" + Identidade + ", Email=" + Email + '}';
+        return id + ";" + cpfCnpj + ";" + razaoSocial + ";" + nome + ";" + Identidade + ";" + Email + ";" + objetotelefone.getDdi() + ";" +
+                objetotelefone.getDdd() + ";" +objetotelefone.getNumero()+ ";" + objetoendereco.getLogradouro()+ ";" +
+                objetoendereco.getComplemento() +";" + objetoendereco.getCep() + ";" + objetoendereco.getBairro() + ";" + objetoendereco.getCidade() + ";" +
+                objetoendereco.getEstado() + ";";
     }
 
-   
+   public void setEndereco(Endereco objetoEndereco) {
+   }
+    public void setTelefone(Telefone objetoTelefone) {
+        
+    }
     
    
     
