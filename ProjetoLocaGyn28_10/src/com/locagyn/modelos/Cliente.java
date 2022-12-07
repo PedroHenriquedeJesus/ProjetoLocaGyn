@@ -21,19 +21,19 @@ public class Cliente extends Modelo {
     private String nome = "";
     private String Identidade = "";
     private String Email = "";
-    EnumTipoCliente clienteTipo;
+    EnumTipoCliente TipoCliente;
     Telefone objetotelefone = new Telefone();
     Endereco objetoendereco = new Endereco();
 
     public Cliente(int id,String cpfCnpj, String razaoSocial, String nome, String Identidade, String Email, 
-             String clienteTipo, Telefone telefone, Endereco endereco)throws Exception {
+             String TipoCliente, Telefone telefone, Endereco endereco)throws Exception {
     this.id = id; 
     this.cpfCnpj = cpfCnpj;
     this.razaoSocial = razaoSocial;
     this.nome = nome; 
     this.Identidade = Identidade; 
     this.Email = Email;
-    this.clienteTipo = EnumTipoCliente.valueOf(clienteTipo);
+    this.TipoCliente = EnumTipoCliente.valueOf(TipoCliente);
     this.objetoendereco = endereco;
     this.objetotelefone = telefone;
     }
@@ -76,6 +76,15 @@ public class Cliente extends Modelo {
         this.cpfCnpj = cpfCnpj;
     }
 
+     public EnumTipoCliente getTipoCliente() {
+        return TipoCliente;
+    } 
+    
+    public void setTipoCliente(EnumTipoCliente tipoCliente) {
+        this.TipoCliente = TipoCliente;
+    }
+    
+    
     public String getRazaoSocial() {
         return razaoSocial;
     }
@@ -112,7 +121,7 @@ public class Cliente extends Modelo {
   
     @Override
     public String toString() {
-        return id + ";" + cpfCnpj + ";" + razaoSocial + ";" + nome + ";" + Identidade + ";" + Email + ";" + objetotelefone.getDdi() + ";" +
+        return id + ";" + cpfCnpj + ";" +TipoCliente+";"+ razaoSocial + ";" + nome + ";" + Identidade + ";" + Email + ";" + objetotelefone.getDdi() + ";" +
                 objetotelefone.getDdd() + ";" +objetotelefone.getNumero()+ ";" + objetoendereco.getLogradouro()+ ";" +
                 objetoendereco.getComplemento() +";" + objetoendereco.getCep() + ";" + objetoendereco.getBairro() + ";" + objetoendereco.getCidade() + ";" +
                 objetoendereco.getEstado() + ";";

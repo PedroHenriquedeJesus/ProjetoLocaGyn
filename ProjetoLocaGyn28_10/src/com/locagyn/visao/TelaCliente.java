@@ -20,6 +20,7 @@ import java.io.File;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -473,20 +474,30 @@ public class TelaCliente extends javax.swing.JFrame {
             Iterator<Cliente> lista = listaDeClientes.iterator();
 
             while (lista.hasNext()) {
-                String[] saida = new String[17];
+                String[] saida = new String[16];
                 Cliente aux = lista.next();
                 saida[0] = aux.getId() + "";
                 saida[1] = aux.getCpfCnpj();
-                saida[2] = aux.getNome();
-                saida[3] = aux.getRazaoSocial();
-                saida[4] = aux.getIdentidade();
-                saida[5] = aux.getEmail();
+                saida[2] = aux.getTipoCliente().toString();
+                saida[3] = aux.getNome();
+                saida[4] = aux.getRazaoSocial();
+                saida[5] = aux.getIdentidade();
+                saida[6] = aux.getEmail();
+                saida[7] = aux.getObjetoendereco().getLogradouro();
+                saida[8] = aux.getObjetoendereco().getComplemento();
+                saida[9] = aux.getObjetoendereco().getCep()+"";
+                saida[10] = aux.getObjetoendereco().getBairro();
+                saida[11] = aux.getObjetoendereco().getCidade();
+                saida[12] = aux.getObjetoendereco().getEstado();
+                saida[13] = aux.getObjetotelefone().getDdi()+"";
+                saida[14] = aux.getObjetotelefone().getDdd()+"";
+                saida[15] = aux.getObjetotelefone().getNumero()+"";
                 
-                
-                //saida[4] = url da marca a partir do método buscar(Id)
                 
                 //Incluir nova linha na Tabela
-                //Object[] dados = {saida[0], saida[1], saida[2], saida[3], imagemCarro};
+                Object[] dados = {saida[0], saida[1], saida[2], saida[3],saida[4],saida[5],saida[6],saida[7],saida[8],saida[9],saida[10],
+                saida[11],saida[12],saida[13],saida[14],saida[15],};
+                
                 model.addRow(saida);
             }
         }catch(Exception erro){
@@ -534,17 +545,20 @@ public class TelaCliente extends javax.swing.JFrame {
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         // TODO add your handling code here:
-        try {
+         try {
 
-            //Cliente objeto = new Cliente(0,jTextFieldId.getText().toUpperCase(),jTextFieldCpf.getText());
+/*            Cliente objeto = new Cliente(0,jTextFieldId.getText(),jTextFieldCpf.getText(),jComboBoxPessoa.getSelectedItem().toString(), jTextFieldNome.getText(), 
+         jTextFieldRazaoSocial.getText(),jTextFieldIdentidade.getText(),jTextFieldEmail.getText(),jTextFieldLogradouro.getText(), jTextFieldComplemento.getText(), 
+         jTextFieldCep.getText(),jTextFieldBairro.getText(),jTextFieldCidade.getText(),jTextFieldEstado.getText(), jTextFieldDdi.getText(),jTextFieldDdd.getText(),
+         jTextFieldNumero.getText());
 
-            //marcaControle.incluir(objeto);
-            //jTextFieldDescricao.setText("");
-            //imprimirDadosNaGrid(marcaControle.listagem());
+            ClienteControle.incluir(objeto);
+            jTextFieldCpf.setText("");
+            imprimirDadosNaGrid(ClienteControle.listagem());*/
 
         }
         catch (Exception erro) {
-            //JOptionPane.showMessageDialog(this, erro.getMessage());
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
 
     }//GEN-LAST:event_jButtonIncluirActionPerformed

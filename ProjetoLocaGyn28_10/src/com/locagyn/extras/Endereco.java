@@ -77,5 +77,7 @@ public class Endereco {
         this.estado = estado;
     }
      
-    
+    public String toString(){
+        return  logradouro  + ";" + complemento + ";" + cep + ";" + bairro + ";" +cidade+";" + estado;
+    }
 }
