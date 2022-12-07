@@ -45,5 +45,10 @@ public class Categoria{
         this.valorLocacao = valorLocacao;
     }
 
+    @Override
+    public String toString() {
+        return id + ";" + descricao + ";" + valorLocacao;
+    }
+    
     
 }
