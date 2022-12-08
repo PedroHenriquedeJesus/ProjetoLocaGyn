@@ -19,7 +19,7 @@ public class CategoriaControle implements ICategoriaControle{
     
     public CategoriaControle(){ this.categoriaPersistencia = new CategoriaDao(); }
     
-    private boolean buscarModelo(String descricao)throws Exception{
+    private boolean buscarCategoria(String descricao)throws Exception{
         try {
             ArrayList<Categoria> listagem = categoriaPersistencia.listagem();
             Iterator<Categoria> lista = listagem.iterator();
@@ -38,12 +38,25 @@ public class CategoriaControle implements ICategoriaControle{
     
     @Override
     public void incluir(Categoria objeto) throws Exception {
+    if(buscarCategoria(objeto.getDescricao())){
+            throw new Exception("Categoria já foi cadastrada");
+        }
+        if (objeto.getDescricao().equals("") || objeto.getDescricao().equals(" ")){throw new Exception("Insira a descrição!");}
         
+        if (objeto.getValorLocacao() == 0){throw new Exception("Insira um valor");}
+   
+        categoriaPersistencia.incluir(objeto);
     }
 
     @Override
     public void alterar(Categoria objeto) throws Exception {
+        if (buscarCategoria(objeto.getDescricao())) {throw new Exception("Categoria já Cadastrada");}
         
+        if (objeto.getDescricao().equals("") || objeto.getDescricao().equals(" ")){throw new Exception("Insira a descrição!");}
+        
+        if (objeto.getValorLocacao()== 0){throw new Exception("Insira um valor!");}
+
+        categoriaPersistencia.alterar(objeto);
     }
 
     @Override

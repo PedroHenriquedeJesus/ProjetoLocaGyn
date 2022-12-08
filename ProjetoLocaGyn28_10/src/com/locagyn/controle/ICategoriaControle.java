@@ -15,4 +15,5 @@ public interface ICategoriaControle {
     void incluir(Categoria objeto)throws Exception;
     void alterar(Categoria objeto)throws Exception;
     ArrayList<Categoria> listagem()throws Exception;
+    
 }
