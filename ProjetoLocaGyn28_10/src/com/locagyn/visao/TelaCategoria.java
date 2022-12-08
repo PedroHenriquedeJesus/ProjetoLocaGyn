@@ -11,10 +11,11 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import com.locagyn.controle.CategoriaControle;
-import com.locagyn.modelos.Marca;
+import com.locagyn.ferramentas.CriarArquivoTXT;
+import com.locagyn.ferramentas.GeradorIdentificador;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Icon;
 
 /**
  *
@@ -22,7 +23,8 @@ import javax.swing.Icon;
  */
 public class TelaCategoria extends javax.swing.JFrame {
     CategoriaControle categoriaControle = new CategoriaControle();
-
+    File idArquivo =  new File("./src/com/locagyn/arquivosdedados/idGerado.txt");
+    File arquivoCategoria = new File("./src/com/locagyn/arquivosdedados/Categoria.txt");
     /**
      * Creates new form TelaCategoria
      */
@@ -31,6 +33,13 @@ public class TelaCategoria extends javax.swing.JFrame {
         setExtendedState(MAXIMIZED_BOTH);
         jTextFieldID.setEnabled(false);
         this.setLocationRelativeTo(null);
+        try {
+            if(!idArquivo.exists())GeradorIdentificador.criarArquivoDeID();
+            if(!arquivoCategoria.exists())CriarArquivoTXT.criarTXTCategoria();
+            imprimirDadosNaGrid(categoriaControle.listagem());
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro);
+        }
     }
 
     private void imprimirDadosNaGrid(ArrayList<Categoria> listaDeModelos) {
@@ -236,8 +245,8 @@ public class TelaCategoria extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Categoria objeto = new Categoria(Integer.parseInt(jTextFieldID.getText()),
-                jTextFieldCategorias1.getText().toUpperCase(), Float.parseFloat(jTextFieldValor.getText()));
-
+            jTextFieldCategorias1.getText().toUpperCase(), Float.parseFloat(jTextFieldValor.getText()));
+            
             categoriaControle.alterar(objeto);
             imprimirDadosNaGrid(categoriaControle.listagem());
         } catch (Exception ex) {

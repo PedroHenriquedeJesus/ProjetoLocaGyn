@@ -32,4 +32,12 @@ public static void criarTXTModelo() throws FileNotFoundException, IOException{
     bw.write(saida);
     bw.close();
 }
+public static void criarTXTCategoria() throws FileNotFoundException, IOException{
+    String nomeArquivoCategoria = "./src/com/locagyn/arquivosdedados/Categoria.txt";
+    FileWriter fw = new FileWriter(nomeArquivoCategoria);
+    BufferedWriter bw = new BufferedWriter(fw);
+    String saida = "";
+    bw.write(saida);
+    bw.close();
+}
 }

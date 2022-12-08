@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package com.locagyn.controle;
+package com.locagyn.persistencia;
 
 import com.locagyn.modelos.Categoria;
 import java.util.ArrayList;
@@ -11,9 +11,9 @@ import java.util.ArrayList;
  *
  * @author Aluno
  */
-public interface ICategoriaControle {
+public interface ICategoriaDao {
     void incluir(Categoria objeto)throws Exception;
     void alterar(Categoria objeto)throws Exception;
     ArrayList<Categoria> listagem()throws Exception;
-    
+    Categoria buscar(int id)throws Exception;
 }

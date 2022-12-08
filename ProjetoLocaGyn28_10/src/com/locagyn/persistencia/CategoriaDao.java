@@ -6,7 +6,6 @@ package com.locagyn.persistencia;
 
 import com.locagyn.ferramentas.GeradorIdentificador;
 import com.locagyn.modelos.Categoria;
-import com.locagyn.modelos.Veiculo;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
  * @author Aluno
  */
 public class CategoriaDao implements ICategoriaDao{
-    private String nomeDoArquivo = ".\\src\\com\\locagyn\\arquivosdedados\\Marca.txt";
+    private String nomeDoArquivo = ".\\src\\com\\locagyn\\arquivosdedados\\Categoria.txt";
     
     public CategoriaDao(){
 }
