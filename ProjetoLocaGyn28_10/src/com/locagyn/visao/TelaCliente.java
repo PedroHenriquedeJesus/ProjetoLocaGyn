@@ -558,23 +558,27 @@ public class TelaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
          try {
 
-                   jTextFieldId.getText();
-                   jFormattedTextFieldCpf.getText();
+             
+                   int id = Integer.parseInt(jTextFieldId.getText());
                    jComboBoxPessoa.getSelectedItem().toString();
+                   jFormattedTextFieldCpf.getText();
                    jTextFieldNome.getText();
                    jTextFieldRazaoSocial.getText();
                    jTextFieldIdentidade.getText();
                    jTextFieldEmail.getText();
-                   jTextFieldLogradouro.getText();
-                   jTextFieldComplemento.getText();
-                   jFormattedTextFieldCep.getText();
-                   jTextFieldBairro.getText();
-                   jTextFieldCidade.getText();
-                   jTextFieldEstado.getText();
-                   jTextFieldDdi.getText();
-                   jTextFieldDdd.getText();
-                   jTextFieldNumero.getText();
-
+                   String logradouro = jTextFieldLogradouro.getText().toUpperCase();
+                   String complemento = jTextFieldComplemento.getText().toUpperCase();
+                   String cep = jFormattedTextFieldCep.getText();
+                   String bairro = jTextFieldBairro.getText().toUpperCase();
+                   String cidade = jTextFieldCidade.getText().toUpperCase();
+                   String estado = jTextFieldEstado.getText().toUpperCase();
+                   Endereco endereco = new Endereco(logradouro, complemento, Integer.parseInt(cep), bairro, cidade, estado);
+                   int ddi = Integer.parseInt(jTextFieldDdi.getText());
+                   int ddd = Integer.parseInt(jTextFieldDdd.getText());
+                   int numero = Integer.parseInt(jTextFieldNumero.getText());
+                   Telefone telefone = new Telefone(ddi,ddd,numero);
+                   
+                   
 //            ClienteControle.incluir(objeto);
             jFormattedTextFieldCpf.setText("");
 //            imprimirDadosNaGrid(ClienteControle.listagem());
