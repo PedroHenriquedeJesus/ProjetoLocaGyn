@@ -3,9 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/User/Documents/GitHub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/persistencia/ClienteDao.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/modelos/Cliente.java</file>
-            <file>file:/C:/Users/User/Documents/GitHub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/visao/TelaCliente.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/extras/Endereco.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/controle/ClienteControle.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/modelos/Marca.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/modelos/Modelo.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/enums/EnumTipoDoVeiculo.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/visao/TelaCliente.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/controle/IClienteControle.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/visao/TelaDasMarcas.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/controle/ModeloControle.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/persistencia/ClienteDao.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/extras/Telefone.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/controle/IMarcaControle.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/modelos/Veiculo.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/visao/TelaDosModelos.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/controle/MarcaControle.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/visao/TelaDeVeiculo.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/modelos/Cliente.java</file>
+            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/persistencia/VeiculoDao.java</file>
         </group>
     </open-files>
 </project-private>

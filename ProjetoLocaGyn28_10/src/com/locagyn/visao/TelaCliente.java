@@ -16,12 +16,18 @@ import javax.swing.table.DefaultTableModel;
 import com.locagyn.extras.Telefone;
 
 import com.locagyn.visao.TelaDasMarcas;
+import java.awt.Container;
 import java.io.File;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -38,6 +44,7 @@ public class TelaCliente extends javax.swing.JFrame {
         initComponents();
         jComboBoxPessoa.setModel(new DefaultComboBoxModel<>(EnumTipoCliente.values()));
         jTextFieldId.setEnabled(false);
+           
     }
 
     /**
@@ -60,7 +67,6 @@ public class TelaCliente extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jTextFieldId = new javax.swing.JTextField();
-        jTextFieldCpf = new javax.swing.JTextField();
         jTextFieldNome = new javax.swing.JTextField();
         jTextFieldRazaoSocial = new javax.swing.JTextField();
         jTextFieldIdentidade = new javax.swing.JTextField();
@@ -70,7 +76,6 @@ public class TelaCliente extends javax.swing.JFrame {
         jTextFieldEstado = new javax.swing.JTextField();
         jTextFieldLogradouro = new javax.swing.JTextField();
         jTextFieldComplemento = new javax.swing.JTextField();
-        jTextFieldCep = new javax.swing.JTextField();
         jTextFieldBairro = new javax.swing.JTextField();
         jTextFieldCidade = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -92,6 +97,8 @@ public class TelaCliente extends javax.swing.JFrame {
         jButtonIncluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableClientes = new javax.swing.JTable();
+        jFormattedTextFieldCpf = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldCep = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -124,12 +131,6 @@ public class TelaCliente extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setText("ENDEREÇO");
-
-        jTextFieldCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCpfActionPerformed(evt);
-            }
-        });
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel12.setText("ESTADO:");
@@ -266,7 +267,7 @@ public class TelaCliente extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBoxPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldCpf))
+                                .addComponent(jFormattedTextFieldCpf))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -274,7 +275,6 @@ public class TelaCliente extends javax.swing.JFrame {
                         .addGap(121, 121, 121)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel11)
                                 .addGap(584, 584, 584))
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -288,14 +288,13 @@ public class TelaCliente extends javax.swing.JFrame {
                                         .addComponent(jLabel12)
                                         .addComponent(jLabel13)))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTextFieldLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextFieldComplemento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextFieldBairro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextFieldCidade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextFieldEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTextFieldLogradouro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldComplemento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldBairro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldCidade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                    .addComponent(jFormattedTextFieldCep, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -377,8 +376,8 @@ public class TelaCliente extends javax.swing.JFrame {
                                         .addComponent(jLabel3))
                                     .addGap(12, 12, 12)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel4))
+                                        .addComponent(jLabel4)
+                                        .addComponent(jFormattedTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(18, 18, 18)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel5)
@@ -395,7 +394,7 @@ public class TelaCliente extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabelCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jComboBoxPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -503,8 +502,20 @@ public class TelaCliente extends javax.swing.JFrame {
         }catch(Exception erro){
             
         }}
-    
+   
+    private void FormataJTextField(){
+       try{
+        Container janela = getContentPane();
+        MaskFormatter mascaraCep = new MaskFormatter("#####-###");
+        MaskFormatter mascaraCpf = new MaskFormatter("###.###.###-##");
+        JFormattedTextField jFormattedTextCpf = new JFormattedTextField(mascaraCpf);
+        janela.add(jFormattedTextFieldCpf);
         
+       }catch(ParseException excp){
+            System.err.println("Erro na formatação: " + excp.getMessage());
+            System.exit(-1);
+       }
+    }   
     
 
 
@@ -547,14 +558,26 @@ public class TelaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
          try {
 
-/*            Cliente objeto = new Cliente(0,jTextFieldId.getText(),jTextFieldCpf.getText(),jComboBoxPessoa.getSelectedItem().toString(), jTextFieldNome.getText(), 
-         jTextFieldRazaoSocial.getText(),jTextFieldIdentidade.getText(),jTextFieldEmail.getText(),jTextFieldLogradouro.getText(), jTextFieldComplemento.getText(), 
-         jTextFieldCep.getText(),jTextFieldBairro.getText(),jTextFieldCidade.getText(),jTextFieldEstado.getText(), jTextFieldDdi.getText(),jTextFieldDdd.getText(),
-         jTextFieldNumero.getText());
+                   jTextFieldId.getText();
+                   jFormattedTextFieldCpf.getText();
+                   jComboBoxPessoa.getSelectedItem().toString();
+                   jTextFieldNome.getText();
+                   jTextFieldRazaoSocial.getText();
+                   jTextFieldIdentidade.getText();
+                   jTextFieldEmail.getText();
+                   jTextFieldLogradouro.getText();
+                   jTextFieldComplemento.getText();
+                   jFormattedTextFieldCep.getText();
+                   jTextFieldBairro.getText();
+                   jTextFieldCidade.getText();
+                   jTextFieldEstado.getText();
+                   jTextFieldDdi.getText();
+                   jTextFieldDdd.getText();
+                   jTextFieldNumero.getText();
 
-            ClienteControle.incluir(objeto);
-            jTextFieldCpf.setText("");
-            imprimirDadosNaGrid(ClienteControle.listagem());*/
+//            ClienteControle.incluir(objeto);
+            jFormattedTextFieldCpf.setText("");
+//            imprimirDadosNaGrid(ClienteControle.listagem());
 
         }
         catch (Exception erro) {
@@ -569,10 +592,6 @@ public class TelaCliente extends javax.swing.JFrame {
         //tela.setVisible(true);
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextFieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCpfActionPerformed
 
     private void jTextFieldDddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDddActionPerformed
         // TODO add your handling code here:
@@ -622,6 +641,8 @@ public class TelaCliente extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonIncluir;
     private javax.swing.JComboBox<EnumTipoCliente> jComboBoxPessoa;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCep;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCpf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -647,10 +668,8 @@ public class TelaCliente extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableClientes;
     private javax.swing.JTextField jTextFieldBairro;
-    private javax.swing.JTextField jTextFieldCep;
     private javax.swing.JTextField jTextFieldCidade;
     private javax.swing.JTextField jTextFieldComplemento;
-    private javax.swing.JTextField jTextFieldCpf;
     private javax.swing.JTextField jTextFieldDdd;
     private javax.swing.JTextField jTextFieldDdi;
     private javax.swing.JTextField jTextFieldEmail;
