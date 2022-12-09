@@ -18,6 +18,7 @@ import com.locagyn.persistencia.ClienteDao;
 
 import com.locagyn.visao.TelaDasMarcas;
 import java.awt.Container;
+import java.awt.TextField;
 import java.io.File;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -45,6 +46,7 @@ public class TelaCliente extends javax.swing.JFrame {
         initComponents();
         jComboBoxPessoa.setModel(new DefaultComboBoxModel<>(EnumTipoCliente.values()));
         jTextFieldId.setEnabled(false);
+        FormataJTextField();
            
     }
 
@@ -505,17 +507,22 @@ public class TelaCliente extends javax.swing.JFrame {
         }}
    
     public void FormataJTextField(){
-       try{
-        Container janela = getContentPane();
-        MaskFormatter mascaraCep = new MaskFormatter("#####-###");
-        MaskFormatter mascaraCpf = new MaskFormatter("###.###.###-##");
-        JFormattedTextField jFormattedTextCpf = new JFormattedTextField(mascaraCpf);
-        janela.add(jFormattedTextFieldCpf);
-        
-       }catch(ParseException excp){
-            System.err.println("Erro na formatação: " + excp.getMessage());
-            System.exit(-1);
+       if(jComboBoxPessoa.getSelectedIndex() == 0){ 
+        try {
+            jFormattedTextFieldCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+       }else{
+       // jFormattedTextFieldCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
        }
+       
+       
+        try {
+            jFormattedTextFieldCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
     }   
     
 
@@ -558,11 +565,6 @@ public class TelaCliente extends javax.swing.JFrame {
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         // TODO add your handling code here:
          try {
-             
-
-
-             
-                   int id = Integer.parseInt(jTextFieldId.getText());
                    String tipocliente = jComboBoxPessoa.getSelectedItem().toString();
                    String cpfcnpj = jFormattedTextFieldCpf.getText();
                    String nome = jTextFieldNome.getText();
@@ -581,10 +583,10 @@ public class TelaCliente extends javax.swing.JFrame {
                    int numero = Integer.parseInt(jTextFieldNumero.getText());
                    Telefone telefone = new Telefone(ddi,ddd,numero);
                    
-                   Cliente objeto = new Cliente(id, cpfcnpj,razaosocial,nome, identidade, email, tipocliente, telefone, endereco);
+                   Cliente objeto = new Cliente(0, cpfcnpj,razaosocial,nome, identidade, email, tipocliente, telefone, endereco);
                    
                    clienteControle.incluir(objeto);
-            
+                   
                    imprimirDadosNaGrid(clienteControle.listagem());
 
         }
