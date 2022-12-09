@@ -39,5 +39,14 @@ public static void criarTXTCategoria() throws FileNotFoundException, IOException
     String saida = "";
     bw.write(saida);
     bw.close();
+    
+}
+public static void criarTXTVeiculo() throws FileNotFoundException, IOException{
+    String nomeArquivoCategoria = "./src/com/locagyn/arquivosdedados/Veiculo.txt";
+    FileWriter fw = new FileWriter(nomeArquivoCategoria);
+    BufferedWriter bw = new BufferedWriter(fw);
+    String saida = "";
+    bw.write(saida);
+    bw.close();
 }
 }
