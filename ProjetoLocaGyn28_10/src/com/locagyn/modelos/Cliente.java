@@ -38,6 +38,12 @@ public class Cliente extends Modelo {
     this.objetotelefone = telefone;
     }
 
+    public Cliente() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
+
     public Telefone getObjetotelefone() {
         return objetotelefone;
     }
@@ -54,10 +60,7 @@ public class Cliente extends Modelo {
         this.objetoendereco = objetoendereco;
     }
 
-    public Cliente() {
-        
-    }
-
+   
     
     
     public int getId() {

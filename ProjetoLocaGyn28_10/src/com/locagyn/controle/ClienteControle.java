@@ -20,13 +20,13 @@ public class ClienteControle implements IClienteControle {
         this.clientePersistencia = new ClienteDao();
     }
     
-    private boolean buscarCliente(String descricao)throws Exception{
+    private boolean buscarCliente(String nome)throws Exception{
         try {
             ArrayList<Cliente> listagem = clientePersistencia.listagem();
             Iterator<Cliente> lista = listagem.iterator();
             while(lista.hasNext()){
                 Cliente aux = lista.next();
-                if(aux.getDescricao().equalsIgnoreCase(descricao)){
+                if(aux.getDescricao().equalsIgnoreCase(nome)){
                 return true;
                 }
         }

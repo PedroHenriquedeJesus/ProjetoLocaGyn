@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 import com.locagyn.extras.Telefone;
+import com.locagyn.persistencia.ClienteDao;
 
 import com.locagyn.visao.TelaDasMarcas;
 import java.awt.Container;
@@ -503,7 +504,7 @@ public class TelaCliente extends javax.swing.JFrame {
             
         }}
    
-    private void FormataJTextField(){
+    public void FormataJTextField(){
        try{
         Container janela = getContentPane();
         MaskFormatter mascaraCep = new MaskFormatter("#####-###");
@@ -557,15 +558,17 @@ public class TelaCliente extends javax.swing.JFrame {
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         // TODO add your handling code here:
          try {
+             
+
 
              
                    int id = Integer.parseInt(jTextFieldId.getText());
-                   jComboBoxPessoa.getSelectedItem().toString();
-                   jFormattedTextFieldCpf.getText();
-                   jTextFieldNome.getText();
-                   jTextFieldRazaoSocial.getText();
-                   jTextFieldIdentidade.getText();
-                   jTextFieldEmail.getText();
+                   String tipocliente = jComboBoxPessoa.getSelectedItem().toString();
+                   String cpfcnpj = jFormattedTextFieldCpf.getText();
+                   String nome = jTextFieldNome.getText();
+                   String razaosocial = jTextFieldRazaoSocial.getText();
+                   String identidade = jTextFieldIdentidade.getText();
+                   String email = jTextFieldEmail.getText();
                    String logradouro = jTextFieldLogradouro.getText().toUpperCase();
                    String complemento = jTextFieldComplemento.getText().toUpperCase();
                    String cep = jFormattedTextFieldCep.getText();
@@ -578,10 +581,11 @@ public class TelaCliente extends javax.swing.JFrame {
                    int numero = Integer.parseInt(jTextFieldNumero.getText());
                    Telefone telefone = new Telefone(ddi,ddd,numero);
                    
+                   Cliente objeto = new Cliente(id, cpfcnpj,razaosocial,nome, identidade, email, tipocliente, telefone, endereco);
                    
-//            ClienteControle.incluir(objeto);
-            jFormattedTextFieldCpf.setText("");
-//            imprimirDadosNaGrid(ClienteControle.listagem());
+                   clienteControle.incluir(objeto);
+            
+                   imprimirDadosNaGrid(clienteControle.listagem());
 
         }
         catch (Exception erro) {
