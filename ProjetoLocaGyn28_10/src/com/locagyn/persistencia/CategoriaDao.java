@@ -24,16 +24,11 @@ public class CategoriaDao implements ICategoriaDao{
     
     @Override
     public void incluir(Categoria objeto) throws Exception {
-        try{
-            //cria o arquivo
+        try{    
             FileWriter fw = new FileWriter(nomeDoArquivo,true);
-            //Criar o buffer do arquivo
             BufferedWriter bw =new BufferedWriter(fw);
-            // Incluindo o id no objeto ******
             objeto.setId(GeradorIdentificador.getID());
-            //Escreve no arquivo
             bw.write(objeto.toString()+"\n");
-            //fecha o arquivo
             bw.close();		
       }catch(Exception erro){
         throw erro;

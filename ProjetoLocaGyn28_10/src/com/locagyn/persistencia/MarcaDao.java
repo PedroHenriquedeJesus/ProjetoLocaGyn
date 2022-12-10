@@ -103,11 +103,9 @@ public class MarcaDao implements IMarcaDao{
             FileReader fr = new FileReader(nomeDoArquivoNoDisco);
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
-            System.out.println("oi");
             while ((linha=br.readLine()) != null) {
                 String vetorString[]=linha.split(";");
                 if(Integer.parseInt(vetorString[0]) == Id){
-                    System.out.println("oi");
                     Marca objetomarca = new Marca();
                     objetomarca.setId(Integer.parseInt(vetorString[0]));
                     objetomarca.setDescricao(vetorString[1]);

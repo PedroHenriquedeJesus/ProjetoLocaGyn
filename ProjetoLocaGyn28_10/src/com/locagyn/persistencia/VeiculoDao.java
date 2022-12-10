@@ -15,6 +15,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -24,7 +25,7 @@ public class VeiculoDao implements IVeiculoDao{
     private String nomeDoArquivo = "";
     
     public VeiculoDao(){
-    nomeDoArquivo = ".\\src\\com\\locagyn\\arquivosdedados\\Marca.txt";
+    nomeDoArquivo = ".\\src\\com\\locagyn\\arquivosdedados\\Veiculo.txt";
 
 }
     @Override
@@ -76,8 +77,12 @@ public class VeiculoDao implements IVeiculoDao{
             
             while((linha=br.readLine())!=null){
                 Veiculo objetoVeiculo = new Veiculo();
+                IMarcaDao marcaDao = new MarcaDao();
+                IModeloDao modeloDao = new ModeloDao();
                 String vetorString[] = linha.split(";");
                 objetoVeiculo.setId(Integer.parseInt(vetorString[0]));
+                objetoVeiculo.setObjMarca(marcaDao.buscar(Integer.parseInt(vetorString[1])));
+                //obj
                 objetoVeiculo.setPlaca(vetorString[1]);
                 objetoVeiculo.setRenavam(Integer.parseInt(vetorString[2]));
                 objetoVeiculo.setPrecoCompra(Integer.parseInt(vetorString[3]));
@@ -88,6 +93,7 @@ public class VeiculoDao implements IVeiculoDao{
                 objetoVeiculo.setQuilometragem(Integer.parseInt(vetorString[8]));
                 objetoVeiculo.setTipo(EnumTipoDoVeiculo.valueOf(vetorString[9]));
                 objetoVeiculo.setSituacao(EnumSituacao.valueOf(vetorString[10]));
+                
                 
                 listaDeVeiculos.add((Veiculo)objetoVeiculo);
             }

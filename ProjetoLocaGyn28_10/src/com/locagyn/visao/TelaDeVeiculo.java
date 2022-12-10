@@ -33,7 +33,7 @@ import com.locagyn.enums.EnumSituacao;
  */
 public class TelaDeVeiculo extends javax.swing.JFrame {
     File idArquivo =  new File("./src/com/locagyn/arquivosdedados/idGerado.txt");
-    File arquivoMarca = new File("./src/com/locagyn/arquivosdedados/Veiculo.txt");
+    File arquivoVeiculo = new File("./src/com/locagyn/arquivosdedados/Veiculo.txt");
     
     IVeiculoControle veiculoControle = new VeiculoControle();
     CategoriaControle categoriaControle = new CategoriaControle();
@@ -92,7 +92,7 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
 
         try {
             if(!idArquivo.exists())GeradorIdentificador.criarArquivoDeID();
-            if(!arquivoMarca.exists())CriarArquivoTXT.criarTXTMarca();
+            if(!arquivoVeiculo.exists())CriarArquivoTXT.criarTXTVeiculo();
             imprimirDadosNaGrid(veiculoControle.listagem());
         } catch (Exception ex) {
             Logger.getLogger(TelaDeVeiculo.class.getName()).log(Level.SEVERE, null, ex);
@@ -239,16 +239,16 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
 
         jTableVeiculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "MARCA", "MODELO", "CATEGORIA", "TIPO", "COMBUSTIVEL", "PLACA", "RENAVEM", "ANO MODELO", "VALOR COMPRA", "SITUAÇÃO", "KM", "VALOR VENDA"
+                "ID", "MARCA", "MODELO", "CATEGORIA", "TIPO", "COMBUSTIVEL", "PLACA", "RENAVEM", "ANO FABRICAÇÃO", "ANO MODELO", "VALOR COMPRA", "SITUAÇÃO", "KM", "VALOR VENDA"
             }
         ));
         jTableVeiculo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -460,23 +460,26 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
             model.setNumRows(0);
             Iterator<Veiculo> lista = listaDeVeiculos.iterator();
             while (lista.hasNext()) {
-                String[] saida = new String[11];
+                String[] saida = new String[14];
                 Veiculo aux = lista.next();
                 saida[0] = aux.getId() + "";
-                saida[1] = aux.getPlaca();
-                saida[2] = aux.getRenavam() + "";
-                saida[3] = aux.getPrecoVenda() + "";
-                saida[4] = aux.getPrecoCompra() + "";
-                saida[5] = aux.getAnoFabricacao()+"";
-                saida[6] = aux.getAnoModelo()+"";
-                saida[7] = aux.getCombustivel().toString();
-                saida[8] = aux.getQuilometragem() + "";
-                saida[9] = aux.getTipo().toString();
-                saida[10] = aux.getSituacao().toString();
+                saida[1] = aux.getObjMarca().toString();
+                saida[2] = aux.getObjModelo().toString();
+                saida[3] = aux.getPlaca();
+                saida[4] = aux.getRenavam() + "";
+                saida[5] = aux.getPrecoVenda() + "";
+                saida[6] = aux.getPrecoCompra() + "";
+                saida[7] = aux.getAnoFabricacao()+"";
+                saida[8] = aux.getAnoModelo()+"";
+                saida[9] = aux.getCombustivel().toString();
+                saida[10] = aux.getQuilometragem() + "";
+                saida[11] = aux.getTipo().toString();
+                saida[12] = aux.getSituacao().toString();
+                saida[13] = aux.getCategoria().toString();
 
                 //Incluir nova linha na Tabela,saida[0]
                 Object[] dados = {saida[0], saida[1], saida[2], saida[3], saida[4], saida[5], saida[6], saida[7], saida[8], saida[9],
-                    saida[10]};
+                    saida[10], saida[11], saida[12], saida[13]};
                 model.addRow(dados);
             }
         } catch (Exception erro) {
@@ -484,17 +487,14 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
         }
 
     }
-
-    
-    
-    
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
 
          try {
-                Veiculo objeto = new Veiculo(jComboBoxCombustivel.getSelectedItem().toString(),jComboBoxEnumTipoDoVeiculo.getSelectedItem().toString(),jComboBoxEnumSituacao.getSelectedItem().toString(),
-                                            Integer.parseInt(jTextFieldID.getText()),jTextFieldPlaca.getText().toUpperCase(),Integer.parseInt(jTextFieldRenavem.getText().toUpperCase()),Float.parseFloat(jTextFieldValorCompra.getText()),
-                                            Float.parseFloat(jTextFieldValorVenda.getText()),formataData.parse(jTextFieldFab.getText()),formataData.parse(jTextFieldAnoModelo.getText()),Integer.parseInt(jTextFieldKm.getText()));           
-                 veiculoControle.alterar(objeto);
+//                Categoria categoria = new Categoria();
+//                Veiculo objeto = new Veiculo(jComboBoxCombustivel.getSelectedItem().toString(),jComboBoxEnumTipoDoVeiculo.getSelectedItem().toString(),jComboBoxEnumSituacao.getSelectedItem().toString(),
+//                                            Integer.parseInt(jTextFieldID.getText()),jTextFieldPlaca.getText().toUpperCase(),Integer.parseInt(jTextFieldRenavem.getText().toUpperCase()),Float.parseFloat(jTextFieldValorCompra.getText()),
+//                                            Float.parseFloat(jTextFieldValorVenda.getText()),formataData.parse(jTextFieldFab.getText()),formataData.parse(jTextFieldAnoModelo.getText()),Integer.parseInt(jTextFieldKm.getText()),jComboBoxCategoria.setSelectedItem(),(Marca)jComboBoxMarca.getSelectedItem(),(Modelo)jComboBoxModelo.getSelectedItem());           
+//                 veiculoControle.alterar(objeto);
                  imprimirDadosNaGrid(veiculoControle.listagem());
              } catch (Exception ex) {
                  Logger.getLogger(TelaDasMarcas.class.getName()).log(Level.SEVERE, null, ex);
@@ -506,7 +506,7 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
            try {
                 Veiculo objeto = new Veiculo(jComboBoxCombustivel.getSelectedItem().toString(),jComboBoxEnumTipoDoVeiculo.getSelectedItem().toString(),jComboBoxEnumSituacao.getSelectedItem().toString(),
                                             0,jTextFieldPlaca.getText().toUpperCase(),Integer.parseInt(jTextFieldRenavem.getText().toUpperCase()),Float.parseFloat(jTextFieldValorCompra.getText()),
-                                            Float.parseFloat(jTextFieldValorVenda.getText()),formataData.parse(jTextFieldFab.getText()),formataData.parse(jTextFieldAnoModelo.getText()),Integer.parseInt(jTextFieldKm.getText()));
+                                            Float.parseFloat(jTextFieldValorVenda.getText()),formataData.parse(jTextFieldFab.getText()),formataData.parse(jTextFieldAnoModelo.getText()),Integer.parseInt(jTextFieldKm.getText()),(Categoria)jComboBoxCategoria.getSelectedItem(),(Marca)jComboBoxMarca.getSelectedItem(),(Modelo)jComboBoxModelo.getSelectedItem());
                 
                 veiculoControle.incluir(objeto);
                 imprimirDadosNaGrid(veiculoControle.listagem());

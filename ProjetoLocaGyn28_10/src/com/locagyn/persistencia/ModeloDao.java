@@ -80,5 +80,8 @@ public class ModeloDao implements IModeloDao{
             throw erro;
         }
     }
-
+    public Modelo buscar(int Id)throws Exception{
+    
+    return null;
+    }
 }

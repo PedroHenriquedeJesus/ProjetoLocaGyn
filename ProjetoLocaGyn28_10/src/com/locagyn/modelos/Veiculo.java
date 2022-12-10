@@ -20,17 +20,20 @@ public class Veiculo extends Modelo{
     private int renavam = 0;
     private float precoCompra = 0;
     private float precoVenda = 0;
-    Date anoFabricacao = new Date();
-    Date anoModelo = new Date();
-    EnumTipoDeCombustivel combustivel;
+    private Date anoFabricacao = new Date();
+    private Date anoModelo = new Date();
+    private EnumTipoDeCombustivel combustivel;
     private int quilometragem = 0;
-    EnumTipoDoVeiculo tipo;
-    EnumSituacao situacao;
+    private EnumTipoDoVeiculo tipo;
+    private EnumSituacao situacao;
+    private Categoria categoria = new Categoria();
+    private Marca objMarca = null;
+    private Modelo objModelo = null;
     
     public Veiculo(){}
     
     public Veiculo(String combustivel, String tipo, String situacao, int id, String placa, int renavam, float precoCompra,
-                   float precoVenda, Date anoFabricacao, Date anoModelo, int quilometragem)throws Exception {
+                   float precoVenda, Date anoFabricacao, Date anoModelo, int quilometragem,Categoria categoria, Marca objMarca, Modelo objModelo)throws Exception {
       
        this.combustivel = EnumTipoDeCombustivel.valueOf(combustivel);
        this.situacao = EnumSituacao.valueOf(situacao);
@@ -42,6 +45,9 @@ public class Veiculo extends Modelo{
        this.anoFabricacao = anoFabricacao;
        this.anoModelo = anoModelo;
        this.quilometragem = quilometragem;
+       this.categoria = categoria;
+       this.objMarca = objMarca;
+       this.objModelo = objModelo;
     }
 
     @Override
@@ -136,17 +142,39 @@ public class Veiculo extends Modelo{
         this.situacao = situacao;
     }
 
-    
     public EnumSituacao getSituacao() {
         return situacao;
     }
+    
+    public Categoria getCategoria(){
+        return categoria;
+    }
+    
+    public void setCategoria(Categoria categoria){
+        this.categoria = categoria;
+    }
 
+    public Marca getObjMarca() {
+        return objMarca;
+    }
+
+    public void setObjMarca(Marca objMarca) {
+        this.objMarca = objMarca;
+    }
+
+    public Modelo getObjModelo() {
+        return objModelo;
+    }
+
+    public void setObjModelo(Modelo objModelo) {
+        this.objModelo = objModelo;
+    }
 
     @Override
     public String toString() {
-        return  id + ";" + placa + ";" + renavam + ";" + precoCompra + ";"+ precoVenda + ";" 
+        return  id + ";"+ objMarca.getId()+ ";" + objModelo.getId() + ";" + placa + ";" + renavam + ";" + precoCompra + ";"+ precoVenda + ";" 
                 + anoFabricacao + ";"+anoModelo + ";"+quilometragem +";" 
-                +combustivel +";" +tipo +";" +situacao +";" +objetoMarca.getId();
+                +combustivel +";" +tipo +";" +situacao +";"+ categoria;
     }
     
 }
