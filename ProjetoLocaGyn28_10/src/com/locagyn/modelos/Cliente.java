@@ -127,7 +127,7 @@ public class Cliente extends Modelo {
         return id + ";" + cpfCnpj + ";" +TipoCliente+";"+ razaoSocial + ";" + nome + ";" + Identidade + ";" + Email + ";" + objetotelefone.getDdi() + ";" +
                 objetotelefone.getDdd() + ";" +objetotelefone.getNumero()+ ";" + objetoendereco.getLogradouro()+ ";" +
                 objetoendereco.getComplemento() +";" + objetoendereco.getCep() + ";" + objetoendereco.getBairro() + ";" + objetoendereco.getCidade() + ";" +
-                objetoendereco.getEstado() + ";";
+                objetoendereco.getEstado();
     }
 
    public void setEndereco(Endereco objetoEndereco) {
@@ -135,6 +135,10 @@ public class Cliente extends Modelo {
     public void setTelefone(Telefone objetoTelefone) {
         
     }
+
+   
+
+    
     
    
     

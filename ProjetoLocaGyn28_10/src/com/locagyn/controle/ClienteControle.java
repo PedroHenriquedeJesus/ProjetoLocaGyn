@@ -39,17 +39,13 @@ public class ClienteControle implements IClienteControle {
     
     @Override
     public void incluir(Cliente objeto) throws Exception {
-        if(buscarCliente(objeto.getDescricao())){
-            throw new Exception("Modelo já cadastrado!");
-        }
+        
             clientePersistencia.incluir(objeto);
     }
 
     @Override
     public void alterar(Cliente objeto) throws Exception {
-        if (buscarCliente(objeto.getDescricao())) {
-            throw new Exception("Marca já Cadastrada");
-        }
+        
         clientePersistencia.alterar(objeto);
     }
     
@@ -61,9 +57,7 @@ public class ClienteControle implements IClienteControle {
     }
     
     public void buscar(Cliente objeto) throws Exception{
-       if (buscarCliente(objeto.getDescricao())) {
-            throw new Exception("Marca já Cadastrada");
-        }
+       
         clientePersistencia.buscar(objeto);
     }
 }

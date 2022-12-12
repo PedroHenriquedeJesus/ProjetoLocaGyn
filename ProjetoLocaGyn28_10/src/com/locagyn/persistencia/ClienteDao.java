@@ -83,10 +83,10 @@ public class ClienteDao implements IClienteDao {
                 objetoEndereco.setBairro(vetorString[10]);
                 objetoEndereco.setCidade(vetorString[11]);
                 objetoEndereco.setEstado(vetorString[12]);
+                objetoCliente.setEndereco(objetoEndereco);
                 objetoTelefone.setDdi(Integer.parseInt(vetorString[13]));
                 objetoTelefone.setDdd(Integer.parseInt(vetorString[14]));
                 objetoTelefone.setNumero(Integer.parseInt(vetorString[15]));
-                objetoCliente.setEndereco(objetoEndereco);
                 objetoCliente.setTelefone(objetoTelefone);
                 listaDeClientes.add(objetoCliente);
        

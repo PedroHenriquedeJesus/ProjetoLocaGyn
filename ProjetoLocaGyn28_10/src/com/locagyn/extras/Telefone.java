@@ -47,7 +47,7 @@ public Telefone(int ddi, int ddd, int numero){
 
     @Override
     public String toString() {
-        return  "+" +  ddi + " (" + ddd + ") " + numero;
+        return  ddi + ";" + ddd + ";" + numero;
     }
     
 }
