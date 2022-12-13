@@ -17,15 +17,19 @@ public class Locacao {
     private Date dataDevolucao = new Date();
     private float valorCalcao = 0;
     private EnumSituacao situacao;
+    Veiculo veiculo = new Veiculo();
+    Cliente cliente = new Cliente();
     
     public Locacao(){}
     
-    public Locacao(int id, Date dataLocacao, Date dataDevolucao, float valorCalcao, String situacao){
+    public Locacao(int id, Date dataLocacao, Date dataDevolucao, float valorCalcao, String situacao, Veiculo veiculo, Cliente cliente){
     this.id = id;
     this.dataLocacao = dataLocacao;
     this.dataDevolucao = dataDevolucao;
     this.valorCalcao = valorCalcao;
     this.situacao = EnumSituacao.valueOf(situacao);
+    this.veiculo = veiculo;
+    this.cliente = cliente;
     }
 
     public int getId() {
@@ -66,6 +70,27 @@ public class Locacao {
 
     public void setSituacao(EnumSituacao situacao) {
         this.situacao = situacao;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    @Override
+    public String toString() {
+        return id + ";" + veiculo + ";" + cliente + "; " + dataLocacao + ";" + dataDevolucao + ";" + valorCalcao + ";" + situacao + ";";
     }
     
 }

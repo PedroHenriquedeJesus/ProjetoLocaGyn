@@ -1,0 +1,3 @@
+4;PALIO;K:\ProjetosGit\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\imagensdemodelos\FiatPalio.jpg;1
+5;FRONTIER;K:\ProjetosGit\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\imagensdemodelos\NissanFrontier.jpg;2
+6;TESTE;K:\ProjetosGit\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\imagensdemodelos\download (1).jpg;3

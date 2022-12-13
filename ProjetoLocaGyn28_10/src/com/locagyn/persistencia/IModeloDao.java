@@ -16,5 +16,5 @@ public interface IModeloDao {
     void alterar(Modelo objeto)throws Exception;
     ArrayList<Modelo> listagem()throws Exception;
     public Modelo buscar(int ID)throws Exception;
-    public Modelo buscar(String ID)throws Exception;
+    public Modelo buscar(String descricao)throws Exception;
 }

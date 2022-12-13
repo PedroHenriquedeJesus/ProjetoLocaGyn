@@ -103,6 +103,62 @@ public class ClienteDao implements IClienteDao {
 
     @Override
     public void buscar(Cliente objeto) throws Exception {
+        try {
+            Cliente objetoCliente = new Cliente();
+            FileReader fr = new FileReader(nomeDoArquivo);
+            BufferedReader br = new BufferedReader(fr);
+            String linha = "";
+             while ((linha=br.readLine()) != null) {
+                String vetorString[]=linha.split(";");
+                Endereco objetoEndereco = new Endereco();
+                Telefone objetoTelefone = new Telefone();
+                //Cliente
+                objetoCliente.setId(Integer.parseInt(vetorString[0]));
+                objetoCliente.setCpfCnpj(vetorString[1]);
+                objetoCliente.setNome(vetorString[2]);
+                objetoCliente.setRazaoSocial(vetorString[3]);
+                objetoCliente.setIdentidade(vetorString[4]);
+                objetoCliente.setEmail(vetorString[5]);
+                //Telefone
+                objetoTelefone.setDdi(Integer.parseInt(vetorString[6]));
+                objetoTelefone.setDdd(Integer.parseInt(vetorString[7]));
+                objetoTelefone.setNumero(Integer.parseInt(vetorString[8]));
+                //Endereco
+                objetoEndereco.setLogradouro(vetorString[9]);
+                objetoEndereco.setComplemento(vetorString[10]);
+                objetoEndereco.setCep(Integer.parseInt(vetorString[11]));
+                objetoEndereco.setBairro(vetorString[12]);
+                objetoEndereco.setCidade(vetorString[13]);
+                objetoEndereco.setEstado(vetorString[14]);
+                //Inclusao de objeto
+                objetoCliente.setTelefone(objetoTelefone);
+                objetoCliente.setEndereco(objetoEndereco);
+            }
+     }
+     catch (Exception e) {
+        }
+    }
 
+    @Override
+    public Cliente buscar(int id) throws Exception {
+        try {
+            FileReader fr = new FileReader(nomeDoArquivo);
+            BufferedReader br = new BufferedReader(fr);
+            String linha = "";
+             while ((linha=br.readLine()) != null) {
+                String vetorString[]=linha.split(";");
+                if(Integer.parseInt(vetorString[0]) == id){
+                  Cliente objetoCliente = new Cliente();
+                  objetoCliente.setId(Integer.parseInt(vetorString[0]));
+                  
+                  
+                  return objetoCliente;
+                }
+            }
+     }
+     catch (Exception e) {
+        }
+    Cliente objetoCliente = new Cliente();
+    return objetoCliente;
     }
 }

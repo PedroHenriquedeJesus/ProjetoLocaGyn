@@ -26,7 +26,7 @@ public class ClienteControle implements IClienteControle {
             Iterator<Cliente> lista = listagem.iterator();
             while(lista.hasNext()){
                 Cliente aux = lista.next();
-                if(aux.getDescricao().equalsIgnoreCase(nome)){
+                if(aux.getNome().equalsIgnoreCase(nome)){
                 return true;
                 }
         }
@@ -40,7 +40,7 @@ public class ClienteControle implements IClienteControle {
     @Override
     public void incluir(Cliente objeto) throws Exception {
         
-            clientePersistencia.incluir(objeto);
+        clientePersistencia.incluir(objeto);
     }
 
     @Override
@@ -56,8 +56,14 @@ public class ClienteControle implements IClienteControle {
         return clientePersistencia.listagem();
     }
     
+    @Override
     public void buscar(Cliente objeto) throws Exception{
-       
+        
         clientePersistencia.buscar(objeto);
+    }
+    @Override
+    public Cliente buscar(int  ID) throws Exception{
+        
+        return clientePersistencia.buscar(ID);
     }
 }

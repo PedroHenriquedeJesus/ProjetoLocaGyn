@@ -3,26 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/K:/ProjetosGit/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/visao/TelaDeVeiculo.java</file>
             <file>file:/K:/ProjetosGit/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/controle/VeiculoControle.java</file>
             <file>file:/K:/ProjetosGit/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/persistencia/VeiculoDao.java</file>
             <file>file:/K:/ProjetosGit/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/modelos/Veiculo.java</file>
-=======
-            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/extras/Endereco.java</file>
-            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/controle/ClienteControle.java</file>
-            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/enums/EnumTipoCliente.java</file>
-            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/visao/TelaCliente.java</file>
-            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/arquivosdedados</file>
-            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/persistencia/ClienteDao.java</file>
-            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/arquivosdedados/idGerado.txt</file>
-            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/extras/Telefone.java</file>
-            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/arquivosdedados/Cliente.txt</file>
-            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/arquivosdedados/Marca.txt</file>
-            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/visao/TelaDosModelos.java</file>
-            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/modelos/Cliente.java</file>
-            <file>file:/C:/Users/Aluno/Desktop/LocaGynGithub/ProjetoLocaGyn/ProjetoLocaGyn28_10/src/com/locagyn/enums/EnumSituacao.java</file>
->>>>>>> BranchB2
         </group>
     </open-files>
 </project-private>

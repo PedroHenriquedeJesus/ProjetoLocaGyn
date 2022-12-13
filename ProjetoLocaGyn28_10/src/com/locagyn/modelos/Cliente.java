@@ -12,7 +12,7 @@ import com.locagyn.extras.Telefone;
  *
  * @author User
  */
-public class Cliente extends Modelo {
+public class Cliente{
 
     private int id = 0;
     private String cpfCnpj = "";

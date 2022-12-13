@@ -16,4 +16,5 @@ public interface IClienteControle {
     void alterar(Cliente objeto)throws Exception;
     ArrayList<Cliente> listagem()throws Exception;
     void buscar(Cliente objeto)throws Exception;
+    public Cliente buscar(int ID)throws Exception;
 }
