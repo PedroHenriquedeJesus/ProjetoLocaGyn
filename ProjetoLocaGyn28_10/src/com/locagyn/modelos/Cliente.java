@@ -5,40 +5,55 @@
 package com.locagyn.modelos;
 
 import com.locagyn.enums.EnumTipoCliente;
-
-
+import com.locagyn.extras.Endereco;
+import com.locagyn.extras.Telefone;
 
 /**
  *
  * @author User
  */
 public class Cliente extends Modelo {
+
     private int id = 0;
     private String cpfCnpj = "";
     private String razaoSocial = "";
     private String nome = "";
     private String Identidade = "";
     private String Email = "";
-    EnumTipoCliente clienteTipo;
-    
+    private Telefone telefone;
+    private Endereco endereco;
 
-    public Cliente(int id,String cpfCnpj, String razaoSocial, String nome, String Identidade, String Email, 
-            String endereco, String telefone, String clienteTipo)throws Exception {
-    this.id = id; 
-    this.cpfCnpj = cpfCnpj;
-    this.razaoSocial = razaoSocial;
-    this.nome = nome; 
-    this.Identidade = Identidade; 
-    this.Email = Email;
-    this.clienteTipo = EnumTipoCliente.valueOf(clienteTipo);
+    public Cliente(int id, String cpfCnpj, String razaoSocial, String nome, String Identidade, String Email, Telefone telefone, Endereco endereco) throws Exception {
+        this.id = id;
+        this.cpfCnpj = cpfCnpj;
+        this.razaoSocial = razaoSocial;
+        this.nome = nome;
+        this.Identidade = Identidade;
+        this.Email = Email;
+        this.endereco = endereco;
+        this.telefone = telefone;
     }
 
     public Cliente() {
-        
+
     }
 
-    
-    
+    public Telefone getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(Telefone telefone) {
+        this.telefone = telefone;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
     public int getId() {
         return id;
     }
@@ -87,15 +102,10 @@ public class Cliente extends Modelo {
         this.Email = Email;
     }
 
-    
-  
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", cpfCnpj=" + cpfCnpj + ", razaoSocial=" + razaoSocial + ", nome=" + nome + ", Identidade=" + Identidade + ", Email=" + Email + '}';
+        return id + ";" + cpfCnpj + ";" + razaoSocial + ";" + nome + ";" + Identidade + ";" + Email 
+                + ";" + telefone.toString() + ";" + endereco.toString();
     }
 
-   
-    
-   
-    
 }

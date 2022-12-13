@@ -13,7 +13,9 @@ public class Telefone {
     private int ddd;
     private int numero;
     
-public Telefone(){}
+public Telefone(){
+
+}
 
 public Telefone(int ddi, int ddd, int numero){
     this.ddi = ddi;
@@ -47,7 +49,7 @@ public Telefone(int ddi, int ddd, int numero){
 
     @Override
     public String toString() {
-        return  "+" +  ddi + " (" + ddd + ") " + numero;
+        return  ddi + ";" + ddd + ";" + numero;
     }
     
 }
