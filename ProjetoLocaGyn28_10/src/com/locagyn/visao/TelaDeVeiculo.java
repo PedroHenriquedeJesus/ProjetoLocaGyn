@@ -491,11 +491,11 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
 
          try {
-//                Categoria categoria = new Categoria();
-//                Veiculo objeto = new Veiculo(jComboBoxCombustivel.getSelectedItem().toString(),jComboBoxEnumTipoDoVeiculo.getSelectedItem().toString(),jComboBoxEnumSituacao.getSelectedItem().toString(),
-//                                            Integer.parseInt(jTextFieldID.getText()),jTextFieldPlaca.getText().toUpperCase(),Integer.parseInt(jTextFieldRenavem.getText().toUpperCase()),Float.parseFloat(jTextFieldValorCompra.getText()),
-//                                            Float.parseFloat(jTextFieldValorVenda.getText()),formataData.parse(jTextFieldFab.getText()),formataData.parse(jTextFieldAnoModelo.getText()),Integer.parseInt(jTextFieldKm.getText()),jComboBoxCategoria.setSelectedItem(),(Marca)jComboBoxMarca.getSelectedItem(),(Modelo)jComboBoxModelo.getSelectedItem());           
-//                 veiculoControle.alterar(objeto);
+                Categoria categoria = new Categoria();
+                Veiculo objeto = new Veiculo(jComboBoxCombustivel.getSelectedItem().toString(),jComboBoxEnumTipoDoVeiculo.getSelectedItem().toString(),jComboBoxEnumSituacao.getSelectedItem().toString(),
+                                            Integer.parseInt(jTextFieldID.getText()),jTextFieldPlaca.getText().toUpperCase(),Integer.parseInt(jTextFieldRenavem.getText().toUpperCase()),Float.parseFloat(jTextFieldValorCompra.getText()),
+                                            Float.parseFloat(jTextFieldValorVenda.getText()),formataData.parse(jTextFieldFab.getText()),formataData.parse(jTextFieldAnoModelo.getText()),Integer.parseInt(jTextFieldKm.getText()),categoriaControle.buscar(jComboBoxCategoria.getSelectedItem().toString()),marcaControle.buscar(jComboBoxMarca.getSelectedItem().toString()),modeloControle.buscar(jComboBoxModelo.getSelectedItem().toString()));           
+                 veiculoControle.alterar(objeto);
                  imprimirDadosNaGrid(veiculoControle.listagem());
              } catch (Exception ex) {
                  Logger.getLogger(TelaDasMarcas.class.getName()).log(Level.SEVERE, null, ex);
