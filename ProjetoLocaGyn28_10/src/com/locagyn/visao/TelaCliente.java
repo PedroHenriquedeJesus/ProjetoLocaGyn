@@ -4,7 +4,6 @@
  */
 package com.locagyn.visao;
 
-
 import com.locagyn.controle.ClienteControle;
 import com.locagyn.controle.IClienteControle;
 import com.locagyn.enums.EnumTipoCliente;
@@ -36,9 +35,10 @@ import javax.swing.text.MaskFormatter;
  * @author Aluno
  */
 public class TelaCliente extends javax.swing.JFrame {
-   
-        IClienteControle clienteControle = new ClienteControle();
-        String urlArquivo = "";
+
+    IClienteControle clienteControle = new ClienteControle();
+    String urlArquivo = "";
+
     /**
      * Creates new form TelaCliente
      */
@@ -46,8 +46,11 @@ public class TelaCliente extends javax.swing.JFrame {
         initComponents();
         jComboBoxPessoa.setModel(new DefaultComboBoxModel<>(EnumTipoCliente.values()));
         jTextFieldId.setEnabled(false);
+        Endereco endereco = new Endereco();
+        Telefone telefone = new Telefone();
         
-           
+   
+
     }
 
     /**
@@ -220,19 +223,21 @@ public class TelaCliente extends javax.swing.JFrame {
 
         jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "CPF/CNPJ", "Tipo Cliente", "Nome", "Razao Social", "Identidade", "Email", "Logradouro", "Complemento", "CEP", "Bairro", "Cidade", "Estado", "DDI", "DDD", "Numero"
+                "ID", "CPF/CNPJ", "Tipo Cliente", "Nome", "Razao Social", "Identidade", "Email", "Telefone", "Endereco"
             }
         ));
+        jTableClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableClientes);
-        if (jTableClientes.getColumnModel().getColumnCount() > 0) {
-            jTableClientes.getColumnModel().getColumn(1).setResizable(false);
-        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -457,11 +462,9 @@ public class TelaCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
- private void imprimirDadosNaGrid(ArrayList<Cliente> listaDeClientes) {
+    private void imprimirDadosNaGrid(ArrayList<Cliente> listaDeClientes) {
         try {
             DefaultTableModel model = (DefaultTableModel) jTableClientes.getModel();
-            Endereco endereco = new Endereco();
-            Telefone telefone = new Telefone();
 
             //Limpa a tabela 
             model.setNumRows(0);
@@ -470,96 +473,79 @@ public class TelaCliente extends javax.swing.JFrame {
             while (lista.hasNext()) {
                 String[] saida = new String[9];
                 Cliente aux = lista.next();
-                String logradouro = endereco.getLogradouro();
-                String complemento = endereco.getComplemento();
-                int cep = endereco.getCep();
-                String bairro = endereco.getBairro();
-                String cidade = endereco.getCidade();
-                String estado = endereco.getEstado();
-                saida[0] = aux.getId() + "";
+                //Endereco
+                String EndeLogradouro = aux.getEndereco().getLogradouro() + " " + aux.getEndereco().getComplemento() + " "
+                        + aux.getEndereco().getCep() + " " + aux.getEndereco().getBairro() + " " + aux.getEndereco().getCidade() + " "
+                        + aux.getEndereco().getEstado();
+                //Telefone 
+                String TeleNumero = aux.getTelefone().getDdi() + " " + aux.getTelefone().getDdd() + " " + aux.getTelefone().getNumero();
+
+                saida[0] = aux.getId()+ "";
                 saida[1] = aux.getCpfCnpj();
-                saida[2] = aux.getTipoCliente().toString();
-                saida[3] = aux.getNome();
-                saida[4] = aux.getRazaoSocial();
+                saida[2] = jComboBoxPessoa.getSelectedItem() + "";
+                saida[3] = aux.getRazaoSocial();
+                saida[4] = aux.getNome();
                 saida[5] = aux.getIdentidade();
                 saida[6] = aux.getEmail();
-                saida[7] = aux.getObjetoendereco().getLogradouro();
-                saida[8] = aux.getObjetoendereco().getComplemento();
-                saida[9] = Integer.toString(aux.getObjetoendereco().getCep());
-                saida[10] = aux.getObjetoendereco().getBairro();
-                saida[11] = aux.getObjetoendereco().getCidade();
-                saida[12] = aux.getObjetoendereco().getEstado();
-                saida[13] = Integer.toString(aux.getObjetotelefone().getDdi());
-                saida[14] = Integer.toString(aux.getObjetotelefone().getDdd());
-                saida[15] = Integer.toString(aux.getObjetotelefone().getNumero());
-                
-                
+                saida[7] = TeleNumero;
+                saida[8] = EndeLogradouro;
+
                 //Incluir nova linha na Tabela
-                Object[] dados = {saida[0], saida[1], saida[2], saida[3],saida[4],saida[5],saida[6],saida[7],saida[8],saida[9],saida[10],
-                saida[11],saida[12],saida[13],saida[14],saida[15]};
-                
+                Object[] dados = {saida[0], saida[1], saida[2], saida[3], saida[4], saida[5], saida[6], saida[7], saida[8]};
+
                 model.addRow(dados);
             }
-        }catch(Exception erro){
-            
-        }}
-   
-    public void FormataJTextField(){
-       
+        } catch (Exception erro) {
+
+        }
+    }
+
+    public void FormataJTextField() {
+
         try {
-          if(jComboBoxPessoa.getSelectedIndex() == 0){
-            jFormattedTextFieldCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-          }
+            if (jComboBoxPessoa.getSelectedIndex() == 0) {
+                jFormattedTextFieldCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            }
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-   
-       
-       
+
         try {
             jFormattedTextFieldCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-    } 
-    
+    }
 
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-
-      
+      int SelectedRowIndex = jTableClientes.getSelectedRow();
+        jFormattedTextFieldCpf.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 1).toString());
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         // TODO add your handling code here:
-         try {
-                   String tipocliente = jComboBoxPessoa.getSelectedItem().toString();
-                   String cpfcnpj = jFormattedTextFieldCpf.getText();
-                   String nome = jTextFieldNome.getText();
-                   String razaosocial = jTextFieldRazaoSocial.getText();
-                   String identidade = jTextFieldIdentidade.getText();
-                   String email = jTextFieldEmail.getText();
-                   String logradouro = jTextFieldLogradouro.getText().toUpperCase();
-                   String complemento = jTextFieldComplemento.getText().toUpperCase();
-                   String cep = jFormattedTextFieldCep.getText();
-                   cep = cep.replaceAll("","");
-                   String bairro = jTextFieldBairro.getText().toUpperCase();
-                   String cidade = jTextFieldCidade.getText().toUpperCase();
-                   String estado = jTextFieldEstado.getText().toUpperCase();
-                   Endereco endereco = new Endereco(logradouro, complemento, Integer.parseInt(cep), bairro, cidade, estado);
-                   int ddi = Integer.parseInt(jTextFieldDdi.getText().replaceAll("",""));
-                   int ddd = Integer.parseInt(jTextFieldDdd.getText().replaceAll("",""));
-                   int numero = Integer.parseInt(jTextFieldNumero.getText().replaceAll("",""));
-                   Telefone telefone = new Telefone(ddi,ddd,numero);
-                   
-                   Cliente objeto = new Cliente(0, cpfcnpj,razaosocial,nome, identidade, email, tipocliente, telefone, endereco);
-                   
-                   clienteControle.incluir(objeto);
-                   
-                   imprimirDadosNaGrid(clienteControle.listagem());
+        try {
+            //Telefone
+            Telefone TeleNumero;
+            TeleNumero = new Telefone(Integer.parseInt(jTextFieldDdi.getText()),
+                    Integer.parseInt(jTextFieldDdd.getText()), Integer.parseInt(jTextFieldNumero.getText()));
+            //Endereco
+            Endereco EndeLogradouro;
+            EndeLogradouro = new Endereco(jTextFieldLogradouro.getText().toUpperCase(), jTextFieldComplemento.getText().toUpperCase(),
+                    Integer.parseInt(jFormattedTextFieldCep.getText()), jTextFieldBairro.getText().toUpperCase(), jTextFieldCidade.getText().toUpperCase(),
+                    jTextFieldEstado.getText().toUpperCase());
+            //Cliente
+            Cliente objeto = new Cliente(0, jFormattedTextFieldCpf.getText(), jTextFieldRazaoSocial.getText(),
+                    jTextFieldNome.getText(), jTextFieldIdentidade.getText(), jTextFieldEmail.getText(),
+                     TeleNumero, EndeLogradouro);
+            //ObjetoCliente
+            if ((objeto) != null) {
+                clienteControle.incluir(objeto);
+                imprimirDadosNaGrid(clienteControle.listagem());
+            }
 
-        }
-        catch (Exception erro) {
+        } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
 
@@ -578,21 +564,58 @@ public class TelaCliente extends javax.swing.JFrame {
 
     private void jComboBoxPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPessoaActionPerformed
         // TODO add your handling code here:
-   
+ try {
+            //Usando a combo box pra editar se é juridico ou fisico
+            System.out.println(jComboBoxPessoa.getSelectedItem());
+            if (jComboBoxPessoa.getSelectedItem().equals("PESSOA_JURIDICA")) {
+                jTextFieldRazaoSocial.setEnabled(true);
+
+            } else {
+                jTextFieldRazaoSocial.setEnabled(false);
+            }
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro);
+
+        }
     }//GEN-LAST:event_jComboBoxPessoaActionPerformed
 
     private void jComboBoxPessoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxPessoaMouseClicked
         // TODO add your handling code here:
-      try{
-        if(jComboBoxPessoa.getSelectedIndex() == 0){
-            jFormattedTextFieldCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        }else{
-             jFormattedTextFieldCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
-        }
-      }catch(java.text.ParseException ex) {
+        try {
+            if (jComboBoxPessoa.getSelectedIndex() == 0) {
+                jFormattedTextFieldCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            } else {
+                jFormattedTextFieldCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+            }
+        } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_jComboBoxPessoaMouseClicked
+
+    private void jTableClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientesMouseClicked
+        // TODO add your handling code here:
+        
+        jTextFieldId.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 0).toString());
+        jFormattedTextFieldCpf.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 1).toString());
+        jComboBoxPessoa.setSelectedItem(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 2).toString());
+        jTextFieldNome.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 3).toString());
+        jTextFieldRazaoSocial.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 4).toString());
+        jTextFieldIdentidade.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 5).toString());
+        jTextFieldEmail.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 6).toString());
+        
+        jTextFieldLogradouro.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 7).toString());
+        jTextFieldComplemento.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 7).toString());
+        jFormattedTextFieldCep.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 7).toString());
+        jTextFieldBairro.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 7).toString());
+        jTextFieldCidade.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 7).toString());
+        jTextFieldEstado.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 7).toString());
+        jTextFieldDdi.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 8).toString());
+        jTextFieldDdd.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 8).toString());
+        jTextFieldEstado.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 8).toString());
+        
+        //String nomeUrl = jTextField.getText();
+    }//GEN-LAST:event_jTableClientesMouseClicked
 
     /**
      * @param args the command line arguments

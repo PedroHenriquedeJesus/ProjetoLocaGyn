@@ -13,7 +13,9 @@ public class Telefone {
     private int ddd;
     private int numero;
     
-public Telefone(){}
+public Telefone(){
+
+}
 
 public Telefone(int ddi, int ddd, int numero){
     this.ddi = ddi;

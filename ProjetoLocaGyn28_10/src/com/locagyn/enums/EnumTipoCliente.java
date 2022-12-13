@@ -10,5 +10,5 @@ package com.locagyn.enums;
  */
 public enum EnumTipoCliente {
     PESSOA_FISICA,
-    PESSOA_JURIDICAS
+    PESSOA_JURIDICA
 }
