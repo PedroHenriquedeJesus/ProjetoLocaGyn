@@ -465,17 +465,18 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
                 saida[0] = aux.getId() + "";
                 saida[1] = aux.getObjMarca().toString();
                 saida[2] = aux.getObjModelo().toString();
-                saida[3] = aux.getPlaca();
-                saida[4] = aux.getRenavam() + "";
-                saida[5] = aux.getPrecoVenda() + "";
-                saida[6] = aux.getPrecoCompra() + "";
-                saida[7] = aux.getAnoFabricacao()+"";
-                saida[8] = aux.getAnoModelo()+"";
-                saida[9] = aux.getCombustivel().toString();
-                saida[10] = aux.getQuilometragem() + "";
-                saida[11] = aux.getTipo().toString();
-                saida[12] = aux.getSituacao().toString();
-                saida[13] = aux.getCategoria().toString();
+                saida[3] = aux.getCategoria().toString();
+                saida[4] = aux.getPlaca();
+                saida[5] = aux.getRenavam() + "";
+                saida[6] = aux.getPrecoVenda() + "";
+                saida[7] = aux.getPrecoCompra() + "";
+                saida[8] = aux.getAnoFabricacao()+"";
+                saida[9] = aux.getAnoModelo()+"";
+                saida[10] = aux.getCombustivel().toString();
+                saida[11] = aux.getQuilometragem() + "";
+                saida[12] = aux.getTipo().toString();
+                saida[13] = aux.getSituacao().toString();
+                
 
                 //Incluir nova linha na Tabela,saida[0]
                 Object[] dados = {saida[0], saida[1], saida[2], saida[3], saida[4], saida[5], saida[6], saida[7], saida[8], saida[9],
@@ -505,7 +506,7 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
            try {
                 Veiculo objeto = new Veiculo(jComboBoxCombustivel.getSelectedItem().toString(),jComboBoxEnumTipoDoVeiculo.getSelectedItem().toString(),jComboBoxEnumSituacao.getSelectedItem().toString(),
-                                            0,jTextFieldPlaca.getText().toUpperCase(),Integer.parseInt(jTextFieldRenavem.getText().toUpperCase()),Float.parseFloat(jTextFieldValorCompra.getText()),
+                                            0,jTextFieldPlaca.getText(),Integer.parseInt(jTextFieldRenavem.getText().toUpperCase()),Float.parseFloat(jTextFieldValorCompra.getText()),
                                             Float.parseFloat(jTextFieldValorVenda.getText()),formataData.parse(jTextFieldFab.getText()),formataData.parse(jTextFieldAnoModelo.getText()),Integer.parseInt(jTextFieldKm.getText()),categoriaControle.buscar(jComboBoxCategoria.getSelectedItem().toString()),marcaControle.buscar(jComboBoxMarca.getSelectedItem().toString()),modeloControle.buscar(jComboBoxModelo.getSelectedItem().toString()));
                 
                 veiculoControle.incluir(objeto);

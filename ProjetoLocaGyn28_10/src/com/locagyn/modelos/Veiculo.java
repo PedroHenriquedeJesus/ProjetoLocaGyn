@@ -174,9 +174,9 @@ public class Veiculo extends Modelo{
 
     @Override
     public String toString() {
-        return  id + ";"+ objMarca.getId()+ ";" + objModelo.getId() + ";" + placa + ";" + renavam + ";" + precoCompra + ";"+ precoVenda + ";" 
-                + formatData.format(anoFabricacao) + ";" +formatData.format(anoModelo) + ";"+quilometragem +";" 
-                +combustivel +";" +tipo +";" +situacao +";"+ categoria.getId();
+        return  id + ";"+ objMarca.getId()+ ";" + objModelo.getId() + ";"+ categoria.getId() + ";" + placa + ";" + renavam + ";" + precoCompra + ";"+ precoVenda + ";" 
+                + formatData.format(anoFabricacao) + ";" +formatData.format(anoModelo) + ";"+ combustivel +";" 
+                + quilometragem +";" +tipo +";" +situacao +";";
     }
     
 }
