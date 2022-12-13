@@ -474,11 +474,11 @@ public class TelaCliente extends javax.swing.JFrame {
                 String[] saida = new String[9];
                 Cliente aux = lista.next();
                 //Endereco
-                String EndeLogradouro = aux.getEndereco().getLogradouro() + " " + aux.getEndereco().getComplemento() + " "
-                        + aux.getEndereco().getCep() + " " + aux.getEndereco().getBairro() + " " + aux.getEndereco().getCidade() + " "
+                String EndeLogradouro = aux.getEndereco().getLogradouro() + ";" + aux.getEndereco().getComplemento() + ";"
+                        + aux.getEndereco().getCep() + ";" + aux.getEndereco().getBairro() + ";" + aux.getEndereco().getCidade() + ";"
                         + aux.getEndereco().getEstado();
                 //Telefone 
-                String TeleNumero = aux.getTelefone().getDdi() + " " + aux.getTelefone().getDdd() + " " + aux.getTelefone().getNumero();
+                String TeleNumero = aux.getTelefone().getDdi() + ";" + aux.getTelefone().getDdd() + ";" + aux.getTelefone().getNumero();
 
                 saida[0] = aux.getId()+ "";
                 saida[1] = aux.getCpfCnpj();
@@ -502,16 +502,10 @@ public class TelaCliente extends javax.swing.JFrame {
 
     public void FormataJTextField() {
 
-        try {
-            if (jComboBoxPessoa.getSelectedIndex() == 0) {
-                jFormattedTextFieldCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-            }
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+       
 
         try {
-            jFormattedTextFieldCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+            jFormattedTextFieldCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -519,8 +513,7 @@ public class TelaCliente extends javax.swing.JFrame {
 
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
-      int SelectedRowIndex = jTableClientes.getSelectedRow();
-        jFormattedTextFieldCpf.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 1).toString());
+      
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
@@ -567,11 +560,12 @@ public class TelaCliente extends javax.swing.JFrame {
  try {
             //Usando a combo box pra editar se é juridico ou fisico
             System.out.println(jComboBoxPessoa.getSelectedItem());
-            if (jComboBoxPessoa.getSelectedItem().equals("PESSOA_JURIDICA")) {
-                jTextFieldRazaoSocial.setEnabled(true);
+            if (jComboBoxPessoa.getSelectedItem().equals("PESSOA_FISICA")) {
+                jTextFieldRazaoSocial.setEnabled(false);
 
             } else {
-                jTextFieldRazaoSocial.setEnabled(false);
+                jTextFieldRazaoSocial.setEnabled(true);
+                jTextFieldNome.setEnabled(false);
             }
 
         } catch (Exception erro) {
@@ -595,7 +589,10 @@ public class TelaCliente extends javax.swing.JFrame {
 
     private void jTableClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientesMouseClicked
         // TODO add your handling code here:
-        
+         DefaultTableModel model = (DefaultTableModel) jTableClientes.getModel();
+         int SelectedRowIndex = jTableClientes.getSelectedRow();
+        //jFormattedTextFieldCpf.setText(model.getValueAt(SelectedRowIndex , 1).toString());
+       
         jTextFieldId.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 0).toString());
         jFormattedTextFieldCpf.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 1).toString());
         jComboBoxPessoa.setSelectedItem(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 2).toString());
@@ -603,18 +600,23 @@ public class TelaCliente extends javax.swing.JFrame {
         jTextFieldRazaoSocial.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 4).toString());
         jTextFieldIdentidade.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 5).toString());
         jTextFieldEmail.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 6).toString());
+ 
+        String Telefone = model.getValueAt(SelectedRowIndex, 7).toString();
+        String vetTelefone[] = Telefone.split(";");
+        jTextFieldDdi.setText(vetTelefone[0]);
+        jTextFieldDdd.setText(vetTelefone[1]);
+        jTextFieldEstado.setText(vetTelefone[2]);
         
-        jTextFieldLogradouro.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 7).toString());
-        jTextFieldComplemento.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 7).toString());
-        jFormattedTextFieldCep.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 7).toString());
-        jTextFieldBairro.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 7).toString());
-        jTextFieldCidade.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 7).toString());
-        jTextFieldEstado.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 7).toString());
-        jTextFieldDdi.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 8).toString());
-        jTextFieldDdd.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 8).toString());
-        jTextFieldEstado.setText(jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 8).toString());
+        String completo = model.getValueAt(SelectedRowIndex, 8).toString();
+        String vetEndereco[] = completo.split(";");
+        jTextFieldLogradouro.setText(vetEndereco[0]);
+        jTextFieldComplemento.setText(vetEndereco[1]);
+        jFormattedTextFieldCep.setText(vetEndereco[2]);
+        jTextFieldBairro.setText(vetEndereco[3]);
+        jTextFieldCidade.setText(vetEndereco[4]);
+        jTextFieldEstado.setText(vetEndereco[5]);
         
-        //String nomeUrl = jTextField.getText();
+        
     }//GEN-LAST:event_jTableClientesMouseClicked
 
     /**
