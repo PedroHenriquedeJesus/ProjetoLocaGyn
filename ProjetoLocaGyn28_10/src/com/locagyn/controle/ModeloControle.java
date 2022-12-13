@@ -69,5 +69,15 @@ public class ModeloControle implements IModeloControle{
                 }});
         return modeloPersistencia.listagem();
     }
+
+    @Override
+    public Modelo buscar(int ID) throws Exception {
+        return modeloPersistencia.buscar(ID);
+    }
+
+    @Override
+    public Modelo buscar(String ID) throws Exception {
+        return modeloPersistencia.buscar(ID);
+    }
     
 }

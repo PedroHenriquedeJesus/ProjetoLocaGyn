@@ -80,8 +80,58 @@ public class ModeloDao implements IModeloDao{
             throw erro;
         }
     }
-    public Modelo buscar(int Id)throws Exception{
-    
-    return null;
+    @Override
+    public Modelo buscar(int ID)throws Exception{
+     try {
+            FileReader fr = new FileReader(nomeDoArquivo);
+            BufferedReader br = new BufferedReader(fr);
+            String linha = "";
+             while ((linha=br.readLine()) != null) {
+                String vetorString[]=linha.split(";");
+                if(Integer.parseInt(vetorString[0]) == ID){
+                   Modelo objetomodelo = new Modelo();
+                  objetomodelo.setId(Integer.parseInt(vetorString[0]));
+                  objetomodelo.setDescricao(vetorString[1]);
+                  objetomodelo.setUrl(vetorString[2]);
+                  IMarcaDao marcaDao = new MarcaDao();
+                  objetomodelo.setObjetoMarca(marcaDao.buscar(Integer.parseInt(vetorString[3])));
+                  
+                  return objetomodelo;
+                }
+            }
+     }
+     catch (Exception e) {
+        }
+    Modelo objetoModelo = new Modelo();
+        return objetoModelo;
     }
-}
+
+    @Override
+    public Modelo buscar(String Descricao) throws Exception {
+         try {
+            FileReader fr = new FileReader(nomeDoArquivo);
+            BufferedReader br = new BufferedReader(fr);
+            String linha = "";
+             while ((linha=br.readLine()) != null) {
+                String vetorString[]=linha.split(";");
+                if((vetorString[1]).equals(Descricao)){
+                   Modelo objetomodelo = new Modelo();
+                  objetomodelo.setId(Integer.parseInt(vetorString[0]));
+                  objetomodelo.setDescricao(vetorString[1]);
+                  objetomodelo.setUrl(vetorString[2]);
+                  IMarcaDao marcaDao = new MarcaDao();
+                  objetomodelo.setObjetoMarca(marcaDao.buscar((vetorString[3])));
+                  
+                  return objetomodelo;
+                }
+            }
+     }
+     catch (Exception e) {
+        }
+    Modelo objetoModelo = new Modelo();
+        return objetoModelo;
+    }
+    
+    }
+
+

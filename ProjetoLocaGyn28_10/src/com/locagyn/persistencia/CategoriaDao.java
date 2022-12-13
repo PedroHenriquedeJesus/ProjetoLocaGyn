@@ -77,7 +77,7 @@ public class CategoriaDao implements ICategoriaDao{
 
     @Override
     public Categoria buscar(int id) throws Exception {
-        Categoria categoria = new Categoria();
+        Categoria objetoCategoria = new Categoria();
         try {
             FileReader fr = new FileReader(nomeDoArquivo);
             BufferedReader br = new BufferedReader(fr);
@@ -86,15 +86,37 @@ public class CategoriaDao implements ICategoriaDao{
             while ((linha=br.readLine()) != null) {
                 String vetorString[]=linha.split(";");
                 if(Integer.parseInt(vetorString[0]) == id){ 
-                    categoria.setId(Integer.parseInt(vetorString[0]));
-                    categoria.setDescricao(vetorString[1]);
-                    categoria.setValorLocacao(Float.parseFloat(vetorString[2]));
-                    return categoria;
+                    objetoCategoria.setId(Integer.parseInt(vetorString[0]));
+                    objetoCategoria.setDescricao(vetorString[1]);
+                    objetoCategoria.setValorLocacao(Float.parseFloat(vetorString[2]));
+                    return objetoCategoria;
                 }
             }    
         } catch (Exception erro) {
         } 
-        return categoria;
+        return objetoCategoria;
+    }
+
+    @Override
+    public Categoria buscar(String descricao) throws Exception {
+        Categoria objetoCategoria = new Categoria();
+        try {
+            FileReader fr = new FileReader(nomeDoArquivo);
+            BufferedReader br = new BufferedReader(fr);
+            String linha = "";
+            
+            while ((linha=br.readLine()) != null) {
+                String vetorString[]=linha.split(";");
+                if(vetorString[1].equals(descricao)){ 
+                    objetoCategoria.setId(Integer.parseInt(vetorString[0]));
+                    objetoCategoria.setDescricao(vetorString[1]);
+                    objetoCategoria.setValorLocacao(Float.parseFloat(vetorString[3]));
+                    return objetoCategoria;
+                }
+            }    
+        } catch (Exception erro) {
+        } 
+        return objetoCategoria;
     }
     
 }

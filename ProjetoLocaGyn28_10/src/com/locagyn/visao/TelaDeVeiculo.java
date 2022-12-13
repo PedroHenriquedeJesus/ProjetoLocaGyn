@@ -506,7 +506,7 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
            try {
                 Veiculo objeto = new Veiculo(jComboBoxCombustivel.getSelectedItem().toString(),jComboBoxEnumTipoDoVeiculo.getSelectedItem().toString(),jComboBoxEnumSituacao.getSelectedItem().toString(),
                                             0,jTextFieldPlaca.getText().toUpperCase(),Integer.parseInt(jTextFieldRenavem.getText().toUpperCase()),Float.parseFloat(jTextFieldValorCompra.getText()),
-                                            Float.parseFloat(jTextFieldValorVenda.getText()),formataData.parse(jTextFieldFab.getText()),formataData.parse(jTextFieldAnoModelo.getText()),Integer.parseInt(jTextFieldKm.getText()),(Categoria)jComboBoxCategoria.getSelectedItem(),(Marca)jComboBoxMarca.getSelectedItem(),(Modelo)jComboBoxModelo.getSelectedItem());
+                                            Float.parseFloat(jTextFieldValorVenda.getText()),formataData.parse(jTextFieldFab.getText()),formataData.parse(jTextFieldAnoModelo.getText()),Integer.parseInt(jTextFieldKm.getText()),categoriaControle.buscar(jComboBoxCategoria.getSelectedItem().toString()),marcaControle.buscar(jComboBoxMarca.getSelectedItem().toString()),modeloControle.buscar(jComboBoxModelo.getSelectedItem().toString()));
                 
                 veiculoControle.incluir(objeto);
                 imprimirDadosNaGrid(veiculoControle.listagem());

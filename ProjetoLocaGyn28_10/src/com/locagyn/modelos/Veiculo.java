@@ -6,6 +6,7 @@ package com.locagyn.modelos;
 import com.locagyn.enums.EnumSituacao;
 import com.locagyn.enums.EnumTipoDeCombustivel;
 import com.locagyn.enums.EnumTipoDoVeiculo;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -20,8 +21,8 @@ public class Veiculo extends Modelo{
     private int renavam = 0;
     private float precoCompra = 0;
     private float precoVenda = 0;
-    private Date anoFabricacao = new Date();
-    private Date anoModelo = new Date();
+    private Date anoFabricacao = null;
+    private Date anoModelo = null;
     private EnumTipoDeCombustivel combustivel;
     private int quilometragem = 0;
     private EnumTipoDoVeiculo tipo;
@@ -29,6 +30,7 @@ public class Veiculo extends Modelo{
     private Categoria categoria = new Categoria();
     private Marca objMarca = null;
     private Modelo objModelo = null;
+    SimpleDateFormat formatData = new SimpleDateFormat("dd/MM/yyyy");
     
     public Veiculo(){}
     
@@ -173,8 +175,8 @@ public class Veiculo extends Modelo{
     @Override
     public String toString() {
         return  id + ";"+ objMarca.getId()+ ";" + objModelo.getId() + ";" + placa + ";" + renavam + ";" + precoCompra + ";"+ precoVenda + ";" 
-                + anoFabricacao + ";"+anoModelo + ";"+quilometragem +";" 
-                +combustivel +";" +tipo +";" +situacao +";"+ categoria;
+                + formatData.format(anoFabricacao) + ";" +formatData.format(anoModelo) + ";"+quilometragem +";" 
+                +combustivel +";" +tipo +";" +situacao +";"+ categoria.getId();
     }
     
 }

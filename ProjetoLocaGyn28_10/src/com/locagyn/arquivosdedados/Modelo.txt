@@ -1,2 +1,2 @@
-22;PALIO;C:\Users\Aluno\Desktop\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\imagensdemodelos\FiatPalio.jpg;20
-23;CAMARO;C:\Users\Aluno\Desktop\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\imagensdemodelos\ChevroletCamaro.jpg;21
+3;PALIO;C:\Users\Aluno\Desktop\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\imagensdemodelos\FiatPalio.jpg;1
+4;FRONTIER;C:\Users\Aluno\Desktop\ProjetoLocaGyn\ProjetoLocaGyn28_10\src\com\locagyn\imagensdemodelos\NissanFrontier.jpg;2

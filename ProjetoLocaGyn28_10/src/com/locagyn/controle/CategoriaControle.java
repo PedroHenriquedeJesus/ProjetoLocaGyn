@@ -63,5 +63,16 @@ public class CategoriaControle implements ICategoriaControle{
     public ArrayList<Categoria> listagem() throws Exception {
         return categoriaPersistencia.listagem();
     }
+
+    @Override
+    public Categoria buscar(int id) throws Exception {
+        return categoriaPersistencia.buscar(id);
+    }
+
+    @Override
+    public Categoria buscar(String descricao) throws Exception {
+        return categoriaPersistencia.buscar(descricao);
+    }
+    
     
 }

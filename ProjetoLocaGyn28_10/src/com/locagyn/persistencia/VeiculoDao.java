@@ -79,20 +79,23 @@ public class VeiculoDao implements IVeiculoDao{
                 Veiculo objetoVeiculo = new Veiculo();
                 IMarcaDao marcaDao = new MarcaDao();
                 IModeloDao modeloDao = new ModeloDao();
+                ICategoriaDao categoriaDao = new CategoriaDao();
                 String vetorString[] = linha.split(";");
+           
                 objetoVeiculo.setId(Integer.parseInt(vetorString[0]));
                 objetoVeiculo.setObjMarca(marcaDao.buscar(Integer.parseInt(vetorString[1])));
-                //obj
-                objetoVeiculo.setPlaca(vetorString[1]);
-                objetoVeiculo.setRenavam(Integer.parseInt(vetorString[2]));
-                objetoVeiculo.setPrecoCompra(Integer.parseInt(vetorString[3]));
-                objetoVeiculo.setPrecoVenda(Integer.parseInt(vetorString[4]));
-                objetoVeiculo.setAnoFabricacao(formatData.parse(vetorString[5]));
-                objetoVeiculo.setAnoModelo(formatData.parse(vetorString[6]));
-                objetoVeiculo.setCombustivel(EnumTipoDeCombustivel.valueOf(vetorString[7]));
-                objetoVeiculo.setQuilometragem(Integer.parseInt(vetorString[8]));
-                objetoVeiculo.setTipo(EnumTipoDoVeiculo.valueOf(vetorString[9]));
-                objetoVeiculo.setSituacao(EnumSituacao.valueOf(vetorString[10]));
+                objetoVeiculo.setObjModelo(modeloDao.buscar(Integer.parseInt(vetorString[2])));
+                objetoVeiculo.setCategoria(categoriaDao.buscar(Integer.parseInt(vetorString[3])));
+                objetoVeiculo.setPlaca(vetorString[4]);
+                objetoVeiculo.setRenavam(Integer.parseInt(vetorString[5]));
+                objetoVeiculo.setPrecoCompra(Float.parseFloat(vetorString[6]));
+                objetoVeiculo.setPrecoVenda(Float.parseFloat(vetorString[7]));
+                objetoVeiculo.setAnoFabricacao(formatData.parse(vetorString[8]));
+                objetoVeiculo.setAnoModelo(formatData.parse(vetorString[9]));
+                objetoVeiculo.setCombustivel(EnumTipoDeCombustivel.valueOf(vetorString[10]));
+                objetoVeiculo.setQuilometragem(Integer.parseInt(vetorString[11]));
+                objetoVeiculo.setTipo(EnumTipoDoVeiculo.valueOf(vetorString[12]));
+                objetoVeiculo.setSituacao(EnumSituacao.valueOf(vetorString[13]));               
                 
                 
                 listaDeVeiculos.add((Veiculo)objetoVeiculo);
@@ -105,9 +108,44 @@ public class VeiculoDao implements IVeiculoDao{
         }
     }
 
-    //@Override
-    //public void buscar(Veiculo objeto) throws Exception {
-     //   throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-   // }
+    @Override
+    public Veiculo buscar(int Id) throws Exception {
+        try {
+            FileReader fr = new FileReader(nomeDoArquivo);
+            BufferedReader br = new BufferedReader(fr);
+            String linha = "";
+             while ((linha=br.readLine()) != null) {
+                String vetorString[]=linha.split(";");
+                if(Integer.parseInt(vetorString[0]) == Id){
+                   Veiculo objetoVeiculo = new Veiculo();
+                IMarcaDao marcaDao = new MarcaDao();
+                IModeloDao modeloDao = new ModeloDao();
+                ICategoriaDao categoriaDao = new CategoriaDao();
+               SimpleDateFormat formatData;
+               formatData = new SimpleDateFormat("dd/MM/yyyy");
+               
+                objetoVeiculo.setId(Integer.parseInt(vetorString[0]));
+                objetoVeiculo.setObjMarca(marcaDao.buscar(Integer.parseInt(vetorString[1])));
+                objetoVeiculo.setObjModelo(modeloDao.buscar(Integer.parseInt(vetorString[2])));
+                objetoVeiculo.setCategoria(categoriaDao.buscar(Integer.parseInt(vetorString[3])));
+                objetoVeiculo.setPlaca(vetorString[4]);
+                objetoVeiculo.setRenavam(Integer.parseInt(vetorString[5]));
+                objetoVeiculo.setPrecoCompra(Integer.parseInt(vetorString[6]));
+                objetoVeiculo.setPrecoVenda(Integer.parseInt(vetorString[7]));
+                objetoVeiculo.setAnoFabricacao(formatData.parse(vetorString[8]));
+                objetoVeiculo.setAnoModelo(formatData.parse(vetorString[9]));
+                objetoVeiculo.setCombustivel(EnumTipoDeCombustivel.valueOf(vetorString[10]));
+                objetoVeiculo.setQuilometragem(Integer.parseInt(vetorString[11]));
+                objetoVeiculo.setTipo(EnumTipoDoVeiculo.valueOf(vetorString[12]));
+                objetoVeiculo.setSituacao(EnumSituacao.valueOf(vetorString[13]));
+                return objetoVeiculo;
+                }
+                }
+        } catch (Exception e) {
+        }
+        Veiculo objetoVeiculo = new Veiculo();
+        return objetoVeiculo;
+    }
+    
    
 }
