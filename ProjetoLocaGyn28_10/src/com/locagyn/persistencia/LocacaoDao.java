@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -101,6 +102,34 @@ public class LocacaoDao implements ILocacaoDao{
         throw erro;
         
       }
+    }
+
+    @Override
+    public ArrayList<Locacao> listagem() throws Exception {
+        try{
+            ArrayList<Veiculo> listaDeVeiculos = new ArrayList<Veiculo>();
+            FileReader fr = new FileReader(nomeDoArquivo);
+            BufferedReader br  = new BufferedReader(fr);
+            String linha = "";
+            
+            SimpleDateFormat formatData;
+            formatData = new SimpleDateFormat("dd/MM/yyyy");
+            while((linha=br.readLine())!=null){
+            Locacao objetoLocacao = new Locacao();
+            IVeiculoDao veiculoDao = new VeiculoDao();
+            IClienteDao clienteDao = new ClienteDao();
+            String vetorString[] = linha.split(";");
+            objetoLocacao.setId(Integer.parseInt(vetorString[0]));
+            objetoLocacao.setVeiculo(veiculoDao.buscar(Integer.parseInt(vetorString[1])));
+            objetoLocacao.setCliente(clienteDao.buscar(Integer.parseInt(vetorString[2])));
+            objetoLocacao.setSituacao(EnumSituacao.LOCADO);
+            }
+            
+      }catch(Exception erro){
+        throw erro;
+        
+      }
+        return null;
     }
     
 }

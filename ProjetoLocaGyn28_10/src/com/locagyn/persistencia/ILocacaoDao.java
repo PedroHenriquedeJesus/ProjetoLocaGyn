@@ -5,6 +5,7 @@
 package com.locagyn.persistencia;
 
 import com.locagyn.modelos.Locacao;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,4 +15,5 @@ public interface ILocacaoDao {
     void locar(Locacao objeto)throws Exception;
     void devolver(Locacao objeto)throws Exception;
     void cancelar(Locacao objeto)throws Exception;
+    ArrayList<Locacao> listagem()throws Exception;
 }
