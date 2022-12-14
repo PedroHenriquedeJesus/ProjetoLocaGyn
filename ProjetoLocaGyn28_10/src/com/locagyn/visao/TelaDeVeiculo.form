@@ -421,6 +421,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldRenavem">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldRenavemKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
@@ -471,6 +474,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldValorCompra">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldValorCompraKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
               <Properties>
@@ -489,6 +495,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldKm">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldKmKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
               <Properties>
@@ -499,6 +508,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldValorVenda">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldValorVendaKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonAlterar">
               <Properties>

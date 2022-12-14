@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -25,7 +26,7 @@ public class TelaLocacao extends javax.swing.JFrame {
      */
     public TelaLocacao() throws Exception {
         initComponents();
-        jTextFieldDataCaucao.setEnabled(false);
+        jFormattedTextFieldCaucao.setEnabled(false);
         imprimirDadosNaGridVeiculo(veiculoControle.listagem());
         
     }
@@ -64,11 +65,8 @@ public class TelaLocacao extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldDataLocacao = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldDataCaucao = new javax.swing.JTextField();
-        jTextFieldDataDevolucao1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLocacao = new javax.swing.JTable();
@@ -81,6 +79,9 @@ public class TelaLocacao extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jFormattedTextFieldLocacao = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldDevolucao = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldCaucao = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -166,6 +167,23 @@ public class TelaLocacao extends javax.swing.JFrame {
 
         jButton3.setText("CANCELAR");
 
+        jFormattedTextFieldLocacao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextFieldLocacaoMouseClicked(evt);
+            }
+        });
+
+        jFormattedTextFieldDevolucao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextFieldDevolucaoMouseClicked(evt);
+            }
+        });
+        jFormattedTextFieldDevolucao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldDevolucaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,14 +207,14 @@ public class TelaLocacao extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldDataCaucao, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel4)
                                             .addComponent(jLabel2)
-                                            .addComponent(jTextFieldDataDevolucao1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextFieldDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel3))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 385, Short.MAX_VALUE)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jFormattedTextFieldLocacao)
+                                            .addComponent(jFormattedTextFieldDevolucao)
+                                            .addComponent(jFormattedTextFieldCaucao, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 422, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addComponent(jLabel5)
@@ -226,24 +244,27 @@ public class TelaLocacao extends javax.swing.JFrame {
                         .addGap(35, 35, 35)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jTextFieldDataLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
+                        .addGap(13, 13, 13)
+                        .addComponent(jFormattedTextFieldLocacao, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldDataDevolucao1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
+                .addComponent(jFormattedTextFieldDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel4)
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldDataCaucao, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jFormattedTextFieldCaucao, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -253,7 +274,7 @@ public class TelaLocacao extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -268,6 +289,26 @@ public class TelaLocacao extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jFormattedTextFieldDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDevolucaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldDevolucaoActionPerformed
+
+    private void jFormattedTextFieldLocacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextFieldLocacaoMouseClicked
+        // TODO add your handling code here:
+        try {
+            jFormattedTextFieldLocacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+        }
+    }//GEN-LAST:event_jFormattedTextFieldLocacaoMouseClicked
+
+    private void jFormattedTextFieldDevolucaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDevolucaoMouseClicked
+        // TODO add your handling code here:
+        try {
+            jFormattedTextFieldDevolucao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new MaskFormatter("##/##/##")));
+        } catch (java.text.ParseException ex) {
+        }
+    }//GEN-LAST:event_jFormattedTextFieldDevolucaoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -312,6 +353,9 @@ public class TelaLocacao extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCaucao;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDevolucao;
+    private javax.swing.JFormattedTextField jFormattedTextFieldLocacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -325,8 +369,5 @@ public class TelaLocacao extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableLocacao;
     private javax.swing.JTable jTableVeiculo;
-    private javax.swing.JTextField jTextFieldDataCaucao;
-    private javax.swing.JTextField jTextFieldDataDevolucao1;
-    private javax.swing.JTextField jTextFieldDataLocacao;
     // End of variables declaration//GEN-END:variables
 }

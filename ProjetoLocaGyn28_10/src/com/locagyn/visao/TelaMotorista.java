@@ -9,13 +9,18 @@ import com.locagyn.controle.MotoristaControle;
 import com.locagyn.extras.Endereco;
 import com.locagyn.extras.Telefone;
 import com.locagyn.modelos.Motorista;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -72,6 +77,24 @@ public class TelaMotorista extends javax.swing.JFrame {
 
         }
     }
+    
+     public void Jformatafield(){
+        MaskFormatter dateMask = null;
+      try{
+           
+
+  dateMask = new MaskFormatter("##/##/####");
+  dateMask.setPlaceholderCharacter('/');
+  dateMask.setValidCharacters("0123456789");
+  // TODO Auto-generated catch block
+       } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+              }
+       jFormattedTextFieldValidade = new JFormattedTextField(dateMask); 
+       jFormattedTextFieldValidade.setHorizontalAlignment(JTextField.RIGHT);
+            
+      
+  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,9 +114,7 @@ public class TelaMotorista extends javax.swing.JFrame {
         jButtonIncluir = new javax.swing.JButton();
         jTextFieldID = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldCNH = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextFieldValidade = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jTextFieldLogradouro = new javax.swing.JTextField();
         jTextFieldComplemento = new javax.swing.JTextField();
@@ -116,6 +137,8 @@ public class TelaMotorista extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMotorista = new javax.swing.JTable();
+        jFormattedTextFieldCNH = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldValidade = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,17 +178,19 @@ public class TelaMotorista extends javax.swing.JFrame {
         jTextFieldID.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel5.setText("CNH:");
-
-        jTextFieldCNH.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
+        jLabel5.setText("RENACH:");
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel6.setText("VALIDADE:");
 
-        jTextFieldValidade.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
-
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setText("ENDEREÇO");
+
+        jFormattedTextFieldCep.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextFieldCepMouseClicked(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel12.setText("ESTADO:");
@@ -200,6 +225,12 @@ public class TelaMotorista extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel17.setText("NUMERO:");
 
+        jTextFieldNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNumeroKeyTyped(evt);
+            }
+        });
+
         jLabel14.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel14.setText("TELEFONE");
 
@@ -220,6 +251,28 @@ public class TelaMotorista extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTableMotorista);
+
+        jFormattedTextFieldCNH.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextFieldCNHMouseClicked(evt);
+            }
+        });
+        jFormattedTextFieldCNH.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextFieldCNHKeyTyped(evt);
+            }
+        });
+
+        jFormattedTextFieldValidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFormattedTextFieldValidadeMouseClicked(evt);
+            }
+        });
+        jFormattedTextFieldValidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextFieldValidadeKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -251,54 +304,52 @@ public class TelaMotorista extends javax.swing.JFrame {
                                 .addComponent(jLabel17)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel16))
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jTextFieldDdi, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldDdd, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel14)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel15)
+                                        .addComponent(jLabel16))
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addGap(6, 6, 6)
+                                            .addComponent(jTextFieldDdi, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jTextFieldDdd, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(92, 92, 92))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jButtonAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jButtonIncluir, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addGap(81, 81, 81))))
+                        .addGap(15, 15, 15))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel11))
                         .addGap(24, 24, 24)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldCNH, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 23, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(449, 449, 449)
-                                .addComponent(jLabel6))
+                                .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFormattedTextFieldCNH, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(106, 106, 106)
-                                .addComponent(jLabel11)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldValidade))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFormattedTextFieldValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -311,16 +362,14 @@ public class TelaMotorista extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextFieldCNH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jTextFieldValidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
+                    .addComponent(jFormattedTextFieldCNH, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jFormattedTextFieldValidade, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(144, 144, 144)
@@ -328,10 +377,13 @@ public class TelaMotorista extends javax.swing.JFrame {
                             .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel14))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextFieldLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(jLabel14)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -369,7 +421,7 @@ public class TelaMotorista extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonIncluir)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -381,7 +433,7 @@ public class TelaMotorista extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(238, 238, 238)
                 .addComponent(jLabel1)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -411,6 +463,8 @@ public class TelaMotorista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+ 
+    
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         // TODO add your handling code here:
          try {
@@ -424,8 +478,8 @@ public class TelaMotorista extends javax.swing.JFrame {
                     Integer.parseInt(jFormattedTextFieldCep.getText()), jTextFieldBairro.getText().toUpperCase(), jTextFieldCidade.getText().toUpperCase(),
                     jTextFieldEstado.getText().toUpperCase());
             //Cliente
-            Motorista objeto = new Motorista(0, jTextFieldNome.getText(), Integer.parseInt(jTextFieldCNH.getText()),
-                    formataData.parse(jTextFieldValidade.getText()),TeleNumero, EndeLogradouro);
+            Motorista objeto = new Motorista(0, jTextFieldNome.getText(), Integer.parseInt(jFormattedTextFieldCNH.getText()),
+                    formataData.parse(jFormattedTextFieldValidade.getText()),TeleNumero, EndeLogradouro);
             //ObjetoCliente
             if ((objeto) != null) {
                 motoristaControle.incluir(objeto);
@@ -433,8 +487,8 @@ public class TelaMotorista extends javax.swing.JFrame {
                 
                 
                 jTextFieldNome.setText("");
-                jTextFieldCNH.setText("");
-                 jTextFieldValidade.setText("");
+                jFormattedTextFieldCNH.setText("");
+                jFormattedTextFieldValidade.setText("");
                   
                 
             }
@@ -457,8 +511,8 @@ public class TelaMotorista extends javax.swing.JFrame {
                     Integer.parseInt(jFormattedTextFieldCep.getText()), jTextFieldBairro.getText().toUpperCase(), jTextFieldCidade.getText().toUpperCase(),
                     jTextFieldEstado.getText().toUpperCase());
             //Cliente
-            Motorista objeto = new Motorista(0, jTextFieldNome.getText(), Integer.parseInt(jTextFieldCNH.getText()),
-                    formataData.parse(jTextFieldValidade.getText()),TeleNumero, EndeLogradouro);
+            Motorista objeto = new Motorista(0, jTextFieldNome.getText(), Integer.parseInt(jFormattedTextFieldCNH.getText()),
+                    formataData.parse(jFormattedTextFieldValidade.getText()),TeleNumero, EndeLogradouro);
             //ObjetoCliente
             if ((objeto) != null) {
                 motoristaControle.incluir(objeto);
@@ -479,8 +533,8 @@ public class TelaMotorista extends javax.swing.JFrame {
 
       jTextFieldID.setText(jTableMotorista.getValueAt(jTableMotorista.getSelectedRow(), 0).toString());
       jTextFieldNome.setText(jTableMotorista.getValueAt(jTableMotorista.getSelectedRow(), 1).toString());
-      jTextFieldCNH.setText(jTableMotorista.getValueAt(jTableMotorista.getSelectedRow(), 2).toString());
-      jTextFieldValidade.setText(jTableMotorista.getValueAt(jTableMotorista.getSelectedRow(), 3).toString());
+      jFormattedTextFieldCNH.setText(jTableMotorista.getValueAt(jTableMotorista.getSelectedRow(), 2).toString());
+      jFormattedTextFieldValidade.setText(jTableMotorista.getValueAt(jTableMotorista.getSelectedRow(), 3).toString());
       jTextFieldLogradouro.setText(jTableMotorista.getValueAt(jTableMotorista.getSelectedRow(), 4).toString());
       jTextFieldComplemento.setText(jTableMotorista.getValueAt(jTableMotorista.getSelectedRow(), 4).toString());
       jFormattedTextFieldCep.setText(jTableMotorista.getValueAt(jTableMotorista.getSelectedRow(), 4).toString());
@@ -496,6 +550,50 @@ public class TelaMotorista extends javax.swing.JFrame {
     private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
+
+    private void jFormattedTextFieldCNHKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCNHKeyTyped
+        
+    }//GEN-LAST:event_jFormattedTextFieldCNHKeyTyped
+
+    private void jFormattedTextFieldValidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFieldValidadeKeyTyped
+       
+    }//GEN-LAST:event_jFormattedTextFieldValidadeKeyTyped
+
+    private void jFormattedTextFieldCNHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCNHMouseClicked
+        // TODO add your handling code here:
+        try {
+            jFormattedTextFieldCNH.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new MaskFormatter("UU#########")));
+        } catch (java.text.ParseException ex) {
+        }
+    }//GEN-LAST:event_jFormattedTextFieldCNHMouseClicked
+
+    private void jFormattedTextFieldValidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextFieldValidadeMouseClicked
+        // TODO add your handling code here:
+        try {
+            jFormattedTextFieldValidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+        }
+    }//GEN-LAST:event_jFormattedTextFieldValidadeMouseClicked
+
+    private void jFormattedTextFieldCepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCepMouseClicked
+        // TODO add your handling code here:
+        try {
+            jFormattedTextFieldCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+        }
+    }//GEN-LAST:event_jFormattedTextFieldCepMouseClicked
+
+    private void jTextFieldNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNumeroKeyTyped
+        // TODO add your handling code here:
+        jTextFieldNumero.addKeyListener(new KeyAdapter() {
+    public void keyTyped(KeyEvent e) {
+        char c = e.getKeyChar();
+        if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+            e.consume();  // if it's not a number, ignore the event
+        }
+     }
+         });
+    }//GEN-LAST:event_jTextFieldNumeroKeyTyped
 
     /**
      * @param args the command line arguments
@@ -535,7 +633,9 @@ public class TelaMotorista extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonIncluir;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCNH;
     private javax.swing.JFormattedTextField jFormattedTextFieldCep;
+    private javax.swing.JFormattedTextField jFormattedTextFieldValidade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -557,7 +657,6 @@ public class TelaMotorista extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableMotorista;
     private javax.swing.JTextField jTextFieldBairro;
-    private javax.swing.JTextField jTextFieldCNH;
     private javax.swing.JTextField jTextFieldCidade;
     private javax.swing.JTextField jTextFieldComplemento;
     private javax.swing.JTextField jTextFieldDdd;
@@ -567,6 +666,5 @@ public class TelaMotorista extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldLogradouro;
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldNumero;
-    private javax.swing.JTextField jTextFieldValidade;
     // End of variables declaration//GEN-END:variables
 }

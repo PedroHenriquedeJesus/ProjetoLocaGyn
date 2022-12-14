@@ -27,6 +27,8 @@ import com.locagyn.controle.MarcaControle;
 import com.locagyn.modelos.Modelo;
 import com.locagyn.controle.ModeloControle;
 import com.locagyn.enums.EnumSituacao;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 /**
  *
  * @author Vinicius Fernandes
@@ -192,6 +194,12 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel9.setText("RENAVEM:");
 
+        jTextFieldRenavem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldRenavemKeyTyped(evt);
+            }
+        });
+
         jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel10.setText("FABRICAÇÃO:");
 
@@ -214,14 +222,32 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel12.setText("VALOR COMPRA:");
 
+        jTextFieldValorCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldValorCompraKeyTyped(evt);
+            }
+        });
+
         jLabel13.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel13.setText("SITUAÇÃO:");
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel14.setText("KM:");
 
+        jTextFieldKm.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldKmKeyTyped(evt);
+            }
+        });
+
         jLabel15.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel15.setText("VALOR VENDA:");
+
+        jTextFieldValorVenda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldValorVendaKeyTyped(evt);
+            }
+        });
 
         jButtonAlterar.setText("ALTERAR");
         jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -547,6 +573,54 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
         jTextFieldKm.setText(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 11).toString());
         jTextFieldValorVenda.setText(jTableVeiculo.getValueAt(jTableVeiculo.getSelectedRow(), 12).toString());
     }//GEN-LAST:event_jTableVeiculoMouseClicked
+
+    private void jTextFieldRenavemKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRenavemKeyTyped
+        // TODO add your handling code here:
+        jTextFieldRenavem.addKeyListener(new KeyAdapter() {
+    public void keyTyped(KeyEvent e) {
+        char c = e.getKeyChar();
+        if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+            e.consume();  // if it's not a number, ignore the event
+        }
+     }
+         });
+    }//GEN-LAST:event_jTextFieldRenavemKeyTyped
+
+    private void jTextFieldKmKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldKmKeyTyped
+        // TODO add your handling code here:
+        jTextFieldKm.addKeyListener(new KeyAdapter() {
+    public void keyTyped(KeyEvent e) {
+        char c = e.getKeyChar();
+        if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+            e.consume();  // if it's not a number, ignore the event
+        }
+     }
+         });
+    }//GEN-LAST:event_jTextFieldKmKeyTyped
+
+    private void jTextFieldValorCompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldValorCompraKeyTyped
+        // TODO add your handling code here:
+        jTextFieldValorCompra.addKeyListener(new KeyAdapter() {
+    public void keyTyped(KeyEvent e) {
+        char c = e.getKeyChar();
+        if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+            e.consume();  // if it's not a number, ignore the event
+        }
+     }
+         });
+    }//GEN-LAST:event_jTextFieldValorCompraKeyTyped
+
+    private void jTextFieldValorVendaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldValorVendaKeyTyped
+        // TODO add your handling code here:
+        jTextFieldValorVenda.addKeyListener(new KeyAdapter() {
+    public void keyTyped(KeyEvent e) {
+        char c = e.getKeyChar();
+        if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+            e.consume();  // if it's not a number, ignore the event
+        }
+     }
+         });
+    }//GEN-LAST:event_jTextFieldValorVendaKeyTyped
    
     /**
      * @param args the command line arguments
