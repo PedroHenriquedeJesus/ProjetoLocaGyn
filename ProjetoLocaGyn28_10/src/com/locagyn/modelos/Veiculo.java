@@ -30,7 +30,7 @@ public class Veiculo extends Modelo{
     private Categoria categoria = new Categoria();
     private Marca objMarca = null;
     private Modelo objModelo = null;
-    SimpleDateFormat formatData = new SimpleDateFormat("yyyy");
+    SimpleDateFormat formatData = new SimpleDateFormat("dd/MM/yyyy");
     
     public Veiculo(){}
     
@@ -176,7 +176,7 @@ public class Veiculo extends Modelo{
     public String toString() {
         return  id + ";"+ objMarca.getId()+ ";" + objModelo.getId() + ";"+ categoria.getId() + ";" + placa + ";" + renavam + ";" + precoCompra + ";"+ precoVenda + ";" 
                 + formatData.format(anoFabricacao) + ";" +formatData.format(anoModelo) + ";"+ combustivel +";" 
-                + quilometragem +";" +tipo +";" +situacao +";";
+                + quilometragem +";" +tipo +";" +situacao;
     }
     
 }

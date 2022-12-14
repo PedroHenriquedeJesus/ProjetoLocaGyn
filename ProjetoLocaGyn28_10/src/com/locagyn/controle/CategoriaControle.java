@@ -50,7 +50,7 @@ public class CategoriaControle implements ICategoriaControle{
 
     @Override
     public void alterar(Categoria objeto) throws Exception {
-        if (buscarCategoria(objeto.getDescricao())) {throw new Exception("Categoria já Cadastrada");}
+        if (buscarCategoria(objeto.getDescricao())){throw new Exception("Categoria já Cadastrada");}
         
         if (objeto.getDescricao().equals("") || objeto.getDescricao().equals(" ")){throw new Exception("Insira a descrição!");}
         

@@ -40,7 +40,7 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
     MarcaControle marcaControle = new MarcaControle();
     ModeloControle modeloControle = new ModeloControle();
     
-    SimpleDateFormat formataData = new SimpleDateFormat("yyyy");
+    SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
     /**
      * Creates new form TelaDeVeiculo
      */
