@@ -35,9 +35,9 @@ public class VeiculoControle implements IVeiculoControle{
     }
     @Override
     public void incluir(Veiculo objeto)throws Exception {
-//         if(buscarVeiculo(objeto.getPlaca())){throw new Exception("Veiculo já cadastrado!");}
-//         
-//         if (objeto.getPlaca().equals("") || objeto.getPlaca().equals(" ")){throw new Exception("Insira a Placa do Veiculo!");}
+         if(buscarVeiculo(objeto.getPlaca())){throw new Exception("Veiculo já cadastrado!");}
+         
+         if (objeto.getPlaca().equals("") || objeto.getPlaca().equals(" ")){throw new Exception("Insira a Placa do Veiculo!");}
             
         veiculoPersistencia.incluir(objeto);
     }

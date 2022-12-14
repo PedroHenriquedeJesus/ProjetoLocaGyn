@@ -4,6 +4,9 @@
  */
 package com.locagyn.modelos;
 
+import com.locagyn.extras.Endereco;
+import com.locagyn.extras.Telefone;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -15,14 +18,15 @@ public class Motorista {
     private int id = 0;
     private String nome = "";
     private int numeroCNH = 0;
-    Date dataValidade = new Date();
-    private String telefone = "";
-    private String endereco = "";
+    Date dataValidade = null;
+   private Telefone telefone;
+    private Endereco endereco;
+    SimpleDateFormat formatData = new SimpleDateFormat("dd/MM/yyyy");
 
     public Motorista() {
     }
     
-    public Motorista(int id, String nome, int numeroCNH, Date dataValidade, String telefone, String endereco) {
+    public Motorista(int id, String nome, int numeroCNH, Date dataValidade, Telefone telefone, Endereco endereco) {
         this.id = id;
         this.nome = nome;
         this.numeroCNH = numeroCNH;
@@ -63,24 +67,24 @@ public class Motorista {
         this.dataValidade = dataValidade;
     }
 
-    public String getTelefone() {
+    public Telefone getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    public void setTelefone(Telefone telefone) {
         this.telefone = telefone;
     }
 
-    public String getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 
     @Override
     public String toString() {
-        return id + ";" + nome + ";" + numeroCNH + ";" + dataValidade + ";"+ telefone + ";" + endereco;
+        return id + ";" + nome + ";" + numeroCNH + ";" + formatData.format(dataValidade) + ";"+ endereco.toString() + ";" + telefone.toString();
     }  
 }
