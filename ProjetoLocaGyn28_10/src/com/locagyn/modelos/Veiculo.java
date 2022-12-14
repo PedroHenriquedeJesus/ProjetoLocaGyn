@@ -30,7 +30,7 @@ public class Veiculo extends Modelo{
     private Categoria categoria = new Categoria();
     private Marca objMarca = null;
     private Modelo objModelo = null;
-    SimpleDateFormat formatData = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat formatData = new SimpleDateFormat("yyyy");
     
     public Veiculo(){}
     

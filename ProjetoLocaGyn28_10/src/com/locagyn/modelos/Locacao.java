@@ -15,7 +15,7 @@ public class Locacao {
     private int id = 0;
     private Date dataLocacao = new Date();
     private Date dataDevolucao = new Date();
-    private float valorCalcao = 0;
+    private float valorCaucao = 0;
     private EnumSituacao situacao;
     Veiculo veiculo = new Veiculo();
     Cliente cliente = new Cliente();
@@ -26,7 +26,7 @@ public class Locacao {
     this.id = id;
     this.dataLocacao = dataLocacao;
     this.dataDevolucao = dataDevolucao;
-    this.valorCalcao = valorCalcao;
+    this.valorCaucao = valorCalcao;
     this.situacao = EnumSituacao.valueOf(situacao);
     this.veiculo = veiculo;
     this.cliente = cliente;
@@ -57,11 +57,11 @@ public class Locacao {
     }
 
     public float getValorCalcao() {
-        return valorCalcao;
+        return valorCaucao;
     }
 
-    public void setValorCalcao(float valorCalcao) {
-        this.valorCalcao = valorCalcao;
+    public void setValorCalcao(float valorCaucao) {
+        this.valorCaucao = valorCaucao;
     }
 
     public EnumSituacao getSituacao() {
@@ -90,7 +90,7 @@ public class Locacao {
 
     @Override
     public String toString() {
-        return id + ";" + veiculo + ";" + cliente + "; " + dataLocacao + ";" + dataDevolucao + ";" + valorCalcao + ";" + situacao + ";";
+        return id + ";" + veiculo.getId() + ";" + cliente.getId() + ";" + dataLocacao + ";" + dataDevolucao + ";" + valorCaucao + ";" + situacao + ";";
     }
     
 }

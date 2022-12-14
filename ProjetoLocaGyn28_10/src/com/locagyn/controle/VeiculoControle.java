@@ -35,9 +35,22 @@ public class VeiculoControle implements IVeiculoControle{
     }
     @Override
     public void incluir(Veiculo objeto)throws Exception {
-//         if(buscarVeiculo(objeto.getPlaca())){throw new Exception("Veiculo já cadastrado!");}
-//         
-//         if (objeto.getPlaca().equals("") || objeto.getPlaca().equals(" ")){throw new Exception("Insira a Placa do Veiculo!");}
+        if(buscarVeiculo(objeto.getPlaca())){throw new Exception("Veiculo já cadastrado!");}
+         
+        if (objeto.getPlaca().equals("") || objeto.getPlaca().equals(" ")){throw new Exception("Insira a Placa do Veiculo!");}
+        
+        if(objeto.getRenavam() <= 0){throw new Exception("Insira o Renavam!");}
+        
+        if(objeto.getPrecoCompra()<= 0){throw new Exception("Insira o preço de compra!");}
+        
+        if(objeto.getPrecoVenda()<= 0){throw new Exception("Insira o preço de venda!");}
+        
+        if(objeto.getAnoFabricacao() == null) {throw new Exception("Insira o ano de fabricação!");}
+        
+        if(objeto.getAnoModelo()== null) {throw new Exception("Insira o ano do modelo!");}
+        
+        if(objeto.getQuilometragem() <= 0) {throw new Exception("Insira a quilometragem!");}
+        
             
         veiculoPersistencia.incluir(objeto);
     }

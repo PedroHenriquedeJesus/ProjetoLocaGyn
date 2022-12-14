@@ -40,7 +40,7 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
     MarcaControle marcaControle = new MarcaControle();
     ModeloControle modeloControle = new ModeloControle();
     
-    SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat formataData = new SimpleDateFormat("yyyy");
     /**
      * Creates new form TelaDeVeiculo
      */
@@ -463,9 +463,9 @@ public class TelaDeVeiculo extends javax.swing.JFrame {
                 String[] saida = new String[14];
                 Veiculo aux = lista.next();
                 saida[0] = aux.getId() + "";
-                saida[1] = aux.getObjMarca().toString();
-                saida[2] = aux.getObjModelo().toString();
-                saida[3] = aux.getCategoria().toString();
+                saida[1] = aux.getObjMarca().getDescricao();
+                saida[2] = aux.getObjModelo().getDescricao();
+                saida[3] = aux.getCategoria().getDescricao();
                 saida[4] = aux.getPlaca();
                 saida[5] = aux.getRenavam() + "";
                 saida[6] = aux.getPrecoVenda() + "";
