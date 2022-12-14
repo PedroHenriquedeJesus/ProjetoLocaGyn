@@ -41,11 +41,13 @@ public class MotoristaControle implements IMotoristaControle{
     
     @Override
     public void incluir(Motorista objeto) throws Exception {
+       if(buscarMotorista(Integer.toString(objeto.getNumeroCNH()))){throw new Exception("Motorisa já cadastrado!");}
         motoristaPersistencia.incluir(objeto);
     }
 
     @Override
     public void alterar(Motorista objeto) throws Exception {
+        if(buscarMotorista(Integer.toString(objeto.getNumeroCNH()))){throw new Exception("Motorisa já cadastrado!");}
         motoristaPersistencia.alterar(objeto);
     }
 

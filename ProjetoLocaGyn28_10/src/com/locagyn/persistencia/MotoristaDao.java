@@ -84,17 +84,20 @@ try {
                 objetoMotorista.setNome(vetorString[1]);
                 objetoMotorista.setNumeroCNH(Integer.parseInt(vetorString[2]));
                 objetoMotorista.setDataValidade(formatData.parse(vetorString[3]));
-                //telefone
-                objetoTelefone.setDdi(Integer.parseInt(vetorString[4]));
-                objetoTelefone.setDdd(Integer.parseInt(vetorString[5]));
-                objetoTelefone.setNumero(Integer.parseInt(vetorString[6]));
+               
                 //Endereco
-                objetoEndereco.setLogradouro(vetorString[7]);
-                objetoEndereco.setComplemento(vetorString[8]);
-                objetoEndereco.setCep(Integer.parseInt(vetorString[9]));
-                objetoEndereco.setBairro(vetorString[10]);
-                objetoEndereco.setCidade(vetorString[11]);
-                objetoEndereco.setEstado(vetorString[12]);
+                objetoEndereco.setLogradouro(vetorString[4]);
+                objetoEndereco.setComplemento(vetorString[4]);
+                objetoEndereco.setCep(Integer.parseInt(vetorString[4]));
+                objetoEndereco.setBairro(vetorString[4]);
+                objetoEndereco.setCidade(vetorString[4]);
+                objetoEndereco.setEstado(vetorString[4]);
+                  //telefone
+                objetoTelefone.setDdi(Integer.parseInt(vetorString[5]));
+                objetoTelefone.setDdd(Integer.parseInt(vetorString[5]));
+                objetoTelefone.setNumero(Integer.parseInt(vetorString[5]));
+                
+         
                 //Inclusao de objeto
                 objetoMotorista.setTelefone(objetoTelefone);
                 objetoMotorista.setEndereco(objetoEndereco);             

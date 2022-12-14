@@ -85,6 +85,6 @@ public class Motorista {
 
     @Override
     public String toString() {
-        return id + ";" + nome + ";" + numeroCNH + ";" + formatData.format(dataValidade) + ";"+ endereco.toString() + ";" + telefone.toString();
+        return id + ";" + nome + ";" + numeroCNH + ";" + formatData.format(dataValidade) + ";"+ endereco.toString() + ";" + telefone.toString()+";";
     }  
 }
