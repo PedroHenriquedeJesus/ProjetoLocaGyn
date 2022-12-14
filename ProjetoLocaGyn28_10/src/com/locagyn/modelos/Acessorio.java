@@ -13,6 +13,18 @@ public class Acessorio {
     private String Descricao = "";
     private float ValorLocacao = 0;
 
+    public Acessorio(int idLocacao, String Descricao, float Valorlocacao) {
+       this.idLocacao = idLocacao;
+       this.Descricao = Descricao;
+       this.ValorLocacao = Valorlocacao;
+    }
+
+    public Acessorio() {
+       
+    }
+
+    
+    
     public int getIdLocacao() {
         return idLocacao;
     }

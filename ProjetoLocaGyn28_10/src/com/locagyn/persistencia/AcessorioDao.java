@@ -98,7 +98,6 @@ public class AcessorioDao implements IAcessorioDao{
             FileReader fr = new FileReader(nomeDoArquivoNoDisco);
             BufferedReader br = new BufferedReader(fr);
             String linha = "";
-            System.out.println("oi");
             while ((linha=br.readLine()) != null) {
                 String vetorString[]=linha.split(";");
                 if(Integer.parseInt(vetorString[0]) == Id){
@@ -147,33 +146,20 @@ public class AcessorioDao implements IAcessorioDao{
                 String vetorString[]=linha.split(";");
                 if(vetorString[1].equals(ID)){
                     System.out.println("oi");
-                    Acessorio objetomarca = new Acessorio();
-                    objetomarca.setIdLocacao(Integer.parseInt(vetorString[0]));
-                    objetomarca.setDescricao(vetorString[1]);
-                    objetomarca.setValorLocacao(Float.parseFloat((vetorString[2])));
-                    System.out.println(objetomarca.getDescricao());
-                    return objetomarca;
+                    //Acessorio objetomarca = new Acessorio();
+//                    objetomarca.setIdLocacao(Integer.parseInt(vetorString[0]));
+//                    objetomarca.setDescricao(vetorString[1]);
+//                    objetomarca.setValorLocacao(Float.parseFloat((vetorString[2])));
+//                    System.out.println(objetomarca.getDescricao());
+//                    return objetomarca;
                     
                 }
                 
             }
-            
-            
-           
-            
-            
-            
         } catch (Exception e) {
-        }
-        
-        
-        
-        
-        
-        
+            
+        } 
         Acessorio objetoAcessorio = new Acessorio();
            return objetoAcessorio;
-        
-        
-        
-}}
+    }
+}

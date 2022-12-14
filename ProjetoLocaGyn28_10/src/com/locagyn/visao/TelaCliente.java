@@ -18,6 +18,8 @@ import com.locagyn.persistencia.ClienteDao;
 import com.locagyn.visao.TelaDasMarcas;
 import java.awt.Container;
 import java.awt.TextField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -178,9 +180,26 @@ public class TelaCliente extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel17.setText("NUMERO:");
 
+        jTextFieldDdi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldDdiKeyTyped(evt);
+            }
+        });
+
         jTextFieldDdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldDddActionPerformed(evt);
+            }
+        });
+        jTextFieldDdd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldDddKeyTyped(evt);
+            }
+        });
+
+        jTextFieldNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNumeroKeyTyped(evt);
             }
         });
 
@@ -472,7 +491,7 @@ public class TelaCliente extends javax.swing.JFrame {
     private void imprimirDadosNaGrid(ArrayList<Cliente> listaDeClientes) {
         try {
             DefaultTableModel model = (DefaultTableModel) jTableClientes.getModel();
-            FormataJTextField();
+            
             //Limpa a tabela 
             model.setNumRows(0);
             Iterator<Cliente> lista = listaDeClientes.iterator();
@@ -507,19 +526,7 @@ public class TelaCliente extends javax.swing.JFrame {
         }
     }
 
-    public String FormataJTextField() {
   
-    
-     String email = jTextFieldEmail.getText();
-     if (email != null)
-    {
-        Pattern p = Pattern.compile("[_A-Za-z0-9][\\[A-Za-z0-9]{5,}@gmail\\.com$");
-        Matcher m = p.matcher(email);
-       
-    }
-        return email;
-    }
-
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
       try{
@@ -599,12 +606,15 @@ public class TelaCliente extends javax.swing.JFrame {
                 jFormattedTextFieldCpf.setEnabled(true);
                 jTextFieldRazaoSocial.setEnabled(false);
                 jTextFieldNome.setEnabled(true);
-            }if(!jComboBoxPessoa.getSelectedItem().equals(EnumTipoCliente.PESSOA_JURIDICA)) {
-            } else {
+                jTextFieldRazaoSocial.setText("-");
+            }if(jComboBoxPessoa.getSelectedItem().equals(EnumTipoCliente.PESSOA_JURIDICA)) {
                 jFormattedTextFieldCpf.setEnabled(true);
                 jTextFieldRazaoSocial.setEnabled(true);
                 jTextFieldNome.setEnabled(false);
-     }
+                jTextFieldNome.setText("-");
+                
+            } else {
+            }
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro);
@@ -659,11 +669,47 @@ public class TelaCliente extends javax.swing.JFrame {
 
     private void jFormattedTextFieldCepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCepMouseClicked
         // TODO add your handling code here:
-         try {
+         /*try {
             jFormattedTextFieldCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
-        }
+        }*/
     }//GEN-LAST:event_jFormattedTextFieldCepMouseClicked
+
+    private void jTextFieldNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNumeroKeyTyped
+        // TODO add your handling code here:
+        jTextFieldNumero.addKeyListener(new KeyAdapter() {
+    public void keyTyped(KeyEvent e) {
+        char c = e.getKeyChar();
+        if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+            e.consume();  // if it's not a number, ignore the event
+        }
+     }
+         });
+    }//GEN-LAST:event_jTextFieldNumeroKeyTyped
+
+    private void jTextFieldDdiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDdiKeyTyped
+        // TODO add your handling code here:
+        jTextFieldDdi.addKeyListener(new KeyAdapter() {
+    public void keyTyped(KeyEvent e) {
+        char c = e.getKeyChar();
+        if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+            e.consume();  // if it's not a number, ignore the event
+        }
+     }
+         });
+    }//GEN-LAST:event_jTextFieldDdiKeyTyped
+
+    private void jTextFieldDddKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDddKeyTyped
+        // TODO add your handling code here:
+        jTextFieldDdd.addKeyListener(new KeyAdapter() {
+    public void keyTyped(KeyEvent e) {
+        char c = e.getKeyChar();
+        if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)) {
+            e.consume();  // if it's not a number, ignore the event
+        }
+     }
+         });
+    }//GEN-LAST:event_jTextFieldDddKeyTyped
 
     /**
      * @param args the command line arguments
